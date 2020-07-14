@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import fire from './config/Fire';
+import firebase from './config/Fire';
 
 class Home extends Component {
     constructor(props) {
@@ -9,13 +9,14 @@ class Home extends Component {
 
 
     logout() {
-        fire.auth().signOut();
+        firebase.auth().signOut();  
     }
 
     render() {
         return (
             <div>
                 <h1>Homepage</h1>
+                <button onClick={this.logout}>Sign out</button>
             </div>
         );
 
