@@ -34,10 +34,8 @@ class Home extends Component {
         this.showClassList();
     }
 
-    getDocuments(collectionName) {
-        console.log(this.props.user.uid);
-        var db = firebase.firestore().collection("users");
-        db.doc(this.props.user.uid).collection(collectionName).get().then((querySnapshot) => {
+    getDocuments(db, collectionName) {
+        db.collection(collectionName).get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 this.handleAddToList(collectionName, doc.id);
                 console.log(`${doc.id} => ${doc.data()}`);
@@ -46,15 +44,17 @@ class Home extends Component {
     }
 
     showClassList() {
-        this.getDocuments("classes");
+        var db = firebase.firestore().collection("users").doc(this.props.user.uid);
+        this.getDocuments(db, "classes");
     }
 
     render() {
         return (
             <div>
-                <h1>Homepage</h1>
+                <h1>Instructor Homepage</h1>
                 <p>{this.props.user.email}</p>
-                <p>{this.state.classes ? this.state.classes: ""}</p>
+                <h3> Classes </h3>
+                {this.state.classes ? (<ClassList classes={this.state.classes}/>) : "No classes"}
                 <button onClick={this.logout}>Sign out</button>
             </div>
         );
@@ -63,8 +63,24 @@ class Home extends Component {
 
 }
 
-class ClassList extends React.Component {
+function ClassList(props) {
+    const classes = props.classes;
+    const listItems = classes.map((className) =>
+        <p>{className}</p>
+    );
+    return (
+        <p>{listItems}</p>
+    );
+}
 
+function StudentList(props) {
+    const students = props.students;
+    const listItems = students.map((student) =>
+        <p>{student}</p>
+    );
+    return (
+        <p>{listItems}</p>
+    );
 }
 
 export default Home;
