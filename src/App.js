@@ -89,12 +89,12 @@ class App extends Component {
       }
     });
   }
+  
   render() {
     return (
      <div className="App">
-      {/* <Login /> */}
-      {this.state.user ? (<Home />) : (<Login />)}
-     <Chart accuracyData= {this.state.accuracyData} legendPosition="bottom"/>
+      {this.state.user ? (<Home user={this.state.user}/>) : (<Login />)}
+      <Chart accuracyData= {this.state.accuracyData} legendPosition="bottom"/>
       </div>
     );
   }
