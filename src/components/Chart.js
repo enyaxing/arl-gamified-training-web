@@ -5,7 +5,7 @@ class Chart extends Component{
   constructor(props){
     super(props);
     this.state = {
-      accuracy:props.accuracyData
+      chartData:props.chartData
 
     }
   }
@@ -21,7 +21,7 @@ class Chart extends Component{
       <div className="chart">
 
         <Line
-          data={this.state.accuracy}
+          data={this.state.chartData}
           options={{
             title:{
               display:this.props.displayTitle,
@@ -37,7 +37,7 @@ class Chart extends Component{
         />
 
         <Line
-          data={this.state.accuracy}
+          data={this.state.chartData}
           options={{
             title:{
               display:this.props.displayTitle,
