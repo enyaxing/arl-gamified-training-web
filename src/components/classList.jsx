@@ -10,6 +10,7 @@ class ClassList extends Component {
     const { classes } = this.props;
     return (
       <div>
+        <br></br>
         <h2>CLASSES</h2>
         {classes.map((className) => (
           <ClassRow className={className}></ClassRow>

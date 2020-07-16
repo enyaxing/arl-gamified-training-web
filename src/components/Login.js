@@ -50,9 +50,10 @@ class Login extends Component {
   render() {
     return (
       <div className="col-md-6">
+        <h1> ARL Gamified Training</h1>
         <form>
           <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
+            {/* <label for="exampleInputEmail1">Email address</label> */}
             <input
               value={this.state.email}
               onChange={this.handleChange}
@@ -65,7 +66,7 @@ class Login extends Component {
             />
           </div>
           <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
+            {/* <label for="exampleInputPassword1">Password</label> */}
             <input
               value={this.state.password}
               onChange={this.handleChange}

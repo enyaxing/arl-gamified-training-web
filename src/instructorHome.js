@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import firebase from "./config/Fire";
 import ClassList from "./components/classList";
-
 class InstructorHome extends Component {
   constructor(props) {
     super(props);
