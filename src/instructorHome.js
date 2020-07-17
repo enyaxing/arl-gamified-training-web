@@ -40,7 +40,7 @@ class InstructorHome extends Component {
   render() {
     return (
       <div>
-        <h1>Instructor Homepage</h1>
+        <h1>Instructor Portal</h1>
         <p>{this.props.user.email}</p>
         <button onClick={this.logout}>Sign out</button>
         {this.state.classes ? (

@@ -41,7 +41,6 @@ class StudentTracker extends Component {
   };
 
   render() {
-    const { classes } = this.props;
     if (Object.keys(this.state.studentDetails).length > 0) {
       return (
         <Table responsive>
@@ -53,7 +52,7 @@ class StudentTracker extends Component {
               <th>Accuracy (%)</th>
               <th>Average Response Rate (s)</th>
               <th>Total Sessions (#)</th>
-              <th>Total Time (min)</th>
+              <th>Total Time (s)</th>
             </tr>
           </thead>
           <tbody>
