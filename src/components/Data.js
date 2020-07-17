@@ -14,7 +14,7 @@ const lineDataSpend = {
   ],
   datasets: [
     {
-      label: "Average Time Per Session (seconds)",
+      label: "Average Time (seconds)",
       fill: false,
       backgroundColor: "red",
       borderColor: "red",
@@ -35,7 +35,7 @@ const lineDataRev = {
   ],
   datasets: [
     {
-      label: "Average Percent Correct",
+      label: "Average Correctness (%)",
       fill: false,
       backgroundColor: "blue",
       borderColor: "blue",
@@ -56,7 +56,7 @@ lineData = {
   ],
   datasets: [
     {
-      label: "Average Time Per Session (seconds)",
+      label: "Average Time (seconds)",
       fill: false,
       backgroundColor: "red",
       borderColor: "red",
@@ -70,7 +70,7 @@ class Data extends Component {
     super(props);
     this.changeMetric = this.changeMetric.bind(this);
     this.state = {
-      selectedMetric: "Spend",
+      selectedMetric: "Time",
     };
   }
   changeMetric(event) {
@@ -96,16 +96,6 @@ class Data extends Component {
         fontSize: 24,
         text: "Performance Trends",
       },
-      tooltips: {
-        enabled: true,
-        callbacks: {
-          label: function (value, data) {
-            console.log("data", data);
-            const currentLabel = data.datasets[value.datasetIndex].label;
-            return currentLabel + value.yLabel;
-          },
-        },
-      },
       legend: {
         display: true,
       },
@@ -113,7 +103,12 @@ class Data extends Component {
       scales: {
         yAxes: [
           {
-            ticks: {
+            display: true,
+            scaleLabel: {
+            display: true,
+            labelString: 'Average'
+          },
+          ticks: {
               callback: function (value) {
                 return parseFloat(value.toFixed(2));
               },
@@ -121,14 +116,18 @@ class Data extends Component {
             stacked: false,
             gridLines: {
               display: true,
-              color: "rgba(255,99,132,0.2)",
             },
           },
         ],
         xAxes: [
           {
+            display: true,
+            scaleLabel: {
+            display: true,
+            labelString: 'Date'
+          },
             gridLines: {
-              display: false,
+            display: true,
             },
           },
         ],
