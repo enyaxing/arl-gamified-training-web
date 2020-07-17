@@ -12,14 +12,13 @@ class App extends Component {
     this.state = {
       user: null,
     };
-    this.authListener = this.authListener.bind(this);
   }
 
   componentDidMount() {
     this.authListener();
   }
 
-  authListener() {
+  authListener = () => {
     fire.auth().onAuthStateChanged((user) => {
       console.log(user);
       if (user) {
@@ -28,7 +27,7 @@ class App extends Component {
         this.setState({ user: null });
       }
     });
-  }
+  };
 
   render() {
     return (

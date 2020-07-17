@@ -1,18 +1,21 @@
 import React, { Component } from "react";
 import firebase from "./config/Fire";
 import ClassList from "./components/classList";
+import StudentTracker from "./components/studentTracker";
+
 class InstructorHome extends Component {
+  // classes is a dictionary of ClassName : {studentID: studentName}
   constructor(props) {
     super(props);
     this.state = {
-      classes: [],
+      classes: {},
     };
   }
 
   logout = () => {
     firebase.auth().signOut();
   };
-  componentWillMount() {
+  componentDidMount() {
     this.getClassList();
   }
 
@@ -25,14 +28,13 @@ class InstructorHome extends Component {
     var classes = [];
     db.get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        // console.log(`${doc.id} => ${doc.data().students}`);
-        // console.log(doc.data());
-        this.setState((prevState) => ({
-          classes: [...prevState.classes, doc.id],
-        }));
+        let prev = { ...this.state.classes };
+        prev[doc.id] = doc.data();
+        this.setState({
+          classes: prev,
+        });
       });
     });
-    // console.log(classToStudentDict);
   };
 
   render() {
@@ -42,10 +44,11 @@ class InstructorHome extends Component {
         <p>{this.props.user.email}</p>
         <button onClick={this.logout}>Sign out</button>
         {this.state.classes ? (
-          <ClassList classes={[this.state.classes]} name={this.state.name} />
+          <ClassList classes={this.state.classes} />
         ) : (
           "No classes created"
         )}
+        <StudentTracker classes={this.state.classes}></StudentTracker>
       </div>
     );
   }
