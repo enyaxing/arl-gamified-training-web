@@ -9,8 +9,16 @@ class StudentTracker extends Component {
       studentDetails: {},
     };
   }
-  componentDidMount() {
-    this.getStudentDetails("YQCQQRLjyWTpKgChODgqyMzxTh62");
+  componentDidUpdate(prevProps) {
+    if (
+      Object.keys(prevProps.classes).length !==
+      Object.keys(this.props.classes).length
+    ) {
+      Object.keys(this.props.classes["Squad 13"].students).map((studentID) =>
+        this.getStudentDetails(studentID)
+      );
+    }
+    // this.getStudentDetails("YQCQQRLjyWTpKgChODgqyMzxTh62");
   }
   getStudentDetails = (studentID) => {
     let db = firebase.firestore().collection("users").doc(studentID);
@@ -22,6 +30,7 @@ class StudentTracker extends Component {
           this.setState({
             studentDetails: prev,
           });
+          console.log(prev);
         } else {
           console.log("No such document!");
         }
@@ -33,22 +42,31 @@ class StudentTracker extends Component {
 
   render() {
     const { classes } = this.props;
-    if (Object.keys(classes).length > 0) {
-      console.log(classes["Squad 13"].students);
+    if (Object.keys(this.state.studentDetails).length > 0) {
       return (
         <Table responsive>
           <thead>
             <tr>
               <th>Name</th>
               <th>Student ID</th>
+              <th>Focus</th>
+              <th>Accuracy (%)</th>
+              <th>Average Response Rate (s)</th>
+              <th>Total Sessions (#)</th>
+              <th>Total Time (min)</th>
             </tr>
           </thead>
           <tbody>
-            {Object.entries(classes["Squad 13"].students).map(
-              ([studentID, studentName]) => (
-                <tr>
-                  <td>{studentName}</td>
+            {Object.entries(this.state.studentDetails).map(
+              ([studentID, details]) => (
+                <tr key={studentID}>
+                  <td>{details.name}</td>
                   <td>{studentID}</td>
+                  <td>{details.focus}</td>
+                  <td>{details.accuracy}</td>
+                  <th>{details.avgResponseRate}</th>
+                  <th>{details.totalSessions}</th>
+                  <th>{details.totalTime}</th>
                 </tr>
               )
             )}
