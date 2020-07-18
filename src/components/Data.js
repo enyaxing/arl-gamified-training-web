@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
+import firebase from "../config/Fire";
 let lineData;
 
 const lineDataSpend = {
@@ -16,6 +17,7 @@ const lineDataSpend = {
     {
       label: "Average Time (seconds)",
       fill: false,
+      fontColor: "black",
       backgroundColor: "red",
       borderColor: "red",
       data: [60, 40, 80, 50, 55, 35, 40],
@@ -37,6 +39,7 @@ const lineDataRev = {
     {
       label: "Average Correctness (%)",
       fill: false,
+      fontColor: "black",
       backgroundColor: "blue",
       borderColor: "blue",
       data: [25, 65, 55, 85, 100, 75, 65],
@@ -46,13 +49,13 @@ const lineDataRev = {
 
 lineData = {
   labels: [
-    "July 15",
-    "July 16",
-    "July 17",
-    "July 18",
-    "July 19",
-    "July 20",
-    "July 21",
+      "July 15",
+      "July 16",
+      "July 17",
+      "July 18",
+      "July 19",
+      "July 20",
+      "July 21",
   ],
   datasets: [
     {
@@ -65,17 +68,19 @@ lineData = {
   ],
 };
 
+
 class Data extends Component {
   constructor(props) {
     super(props);
-    this.changeMetric = this.changeMetric.bind(this);
+    this.changeType = this.changeType.bind(this);
     this.state = {
-      selectedMetric: "Time",
+      selectedType: "Time",
     };
   }
-  changeMetric(event) {
+
+  changeType(event) {
     this.setState({
-      selectedMetric: event.target.value,
+      selectedType: event.target.value,
     });
 
     switch (event.target.value) {
@@ -94,40 +99,46 @@ class Data extends Component {
       title: {
         display: true,
         fontSize: 24,
+        fontColor: "black",
         text: "Performance Trends",
       },
       legend: {
+        labels: {
+         fontColor: 'black'
+      },
         display: true,
       },
-      maintainAspectRatio: true,
       scales: {
         yAxes: [
           {
-            display: true,
+            ticks: {
+              fontColor: "black",
+          },
             scaleLabel: {
             display: true,
-            labelString: 'Average'
+            fontColor: "black",
+            labelString: 'Average',
           },
-          ticks: {
-              callback: function (value) {
-                return parseFloat(value.toFixed(2));
-              },
-            },
             stacked: false,
             gridLines: {
+              fontColor: "black",
               display: true,
             },
           },
         ],
         xAxes: [
           {
-            display: true,
+          ticks: {
+              fontColor: "black",
+          },
             scaleLabel: {
             display: true,
-            labelString: 'Date'
+            fontColor: "black",
+            labelString: 'Date',
           },
             gridLines: {
             display: true,
+            fontColor: "black",
             },
           },
         ],
@@ -135,23 +146,14 @@ class Data extends Component {
     };
 
     return (
-      <div class="align-items-center justify-content-center">
-        <select onChange={this.changeMetric} value={this.state.selectedMetric}>
+      <div class="Data">
+        <select onChange={this.changeType} value={this.state.selectedType}>
           <option value="Time">Time</option>
           <option value="Accuracy">Accuracy</option>
         </select>
-        <div className="row">
-          <div className="col-xl-10">
-            <div className="card">
-              <div className="card-header">
-                <i className="fa fa-align-justify" />
-              </div>
-              <div className="card-block">
-                <Line data={lineData} options={lineOptions} />
-              </div>
-            </div>
+          <div className="line-data">
+              <Line data={lineData} options={lineOptions} />
           </div>
-        </div>
       </div>
     );
   }
