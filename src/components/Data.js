@@ -22,6 +22,16 @@ const lineDataSpend = {
       borderColor: "red",
       data: [60, 40, 80, 50, 55, 35, 40],
     },
+    {
+      label: "Average Time for Student A (seconds)",
+      fill: false,
+      data: [10, 20, 30, 70, 60, 55, 50], // Student A
+    },
+    {
+      label: "Average Time for Student B (seconds)",
+      fill: false,
+      data: [70, 40, 50, 60, 30, 45, 80], // Student B
+    }
   ],
 };
 
@@ -44,27 +54,48 @@ const lineDataRev = {
       borderColor: "blue",
       data: [25, 65, 55, 85, 100, 75, 65],
     },
+    {
+      label: "Average Correctness for Student A (%)",
+      fill: false,
+      data: [10, 20, 60, 40, 50, 30, 100], // Student A
+    },
+    {
+      label: "Average Correctness for Student B (%)",
+      fill: false,
+      data: [70, 60, 40, 55, 65, 30, 80], // Student B
+    }
   ],
 };
 
 lineData = {
   labels: [
-      "July 15",
-      "July 16",
-      "July 17",
-      "July 18",
-      "July 19",
-      "July 20",
-      "July 21",
+    "July 15",
+    "July 16",
+    "July 17",
+    "July 18",
+    "July 19",
+    "July 20",
+    "July 21",
   ],
   datasets: [
     {
       label: "Average Time (seconds)",
       fill: false,
+      fontColor: "black",
       backgroundColor: "red",
       borderColor: "red",
       data: [60, 40, 80, 50, 55, 35, 40],
     },
+    {
+      label: "Average Time for Student A (seconds)",
+      fill: false,
+      data: [10, 20, 30, 70, 60, 55, 50], // Student A
+    },
+    {
+      label: "Average Time for Student B (seconds)",
+      fill: false,
+      data: [70, 40, 50, 60, 30, 45, 80], // Student B 
+    }
   ],
 };
 
@@ -75,8 +106,30 @@ class Data extends Component {
     this.changeType = this.changeType.bind(this);
     this.state = {
       selectedType: "Time",
+      users: {},
     };
   }
+
+  componentDidMount() {
+    this.getUsers();
+  }
+
+  getUsers = () => {
+    let db = firebase
+      .firestore()
+      .collection("users")
+    var users = [];
+    db.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        let prev = { ...this.state.users};
+        prev[doc.id] = doc.data();
+        this.setState({
+          users: prev,
+        });
+      });
+    });
+  };
+
 
   changeType(event) {
     this.setState({
