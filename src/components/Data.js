@@ -3,19 +3,49 @@ import { Line } from "react-chartjs-2";
 import firebase from "../config/Fire";
 let lineData;
 
+const getKeys = (studentID) => {
+  let db = firebase
+    .firestore()
+    .collection("users")
+    .doc(studentID)
+    .collection("sessions");
+  var sessions = []
+  db.get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      sessions[doc.id] = doc.data().points;
+    });
+    console.log(Object.keys(sessions))
+    return Object.keys(sessions);
+  });
+};
+
+const getValues = (studentID) => {
+  let db = firebase
+    .firestore()
+    .collection("users")
+    .doc(studentID)
+    .collection("sessions");
+  var sessions = []
+  db.get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      sessions[doc.id] = doc.data().points;
+    });
+    console.log(Object.values(sessions))
+    return Object.values(sessions);
+  });
+};
+
 const lineDataSpend = {
-  labels: [
-    "July 15",
-    "July 16",
-    "July 17",
-    "July 18",
-    "July 19",
-    "July 20",
-    "July 21",
+  type: [
+    // getKeys("DO9VAxAM8lRm5l67Quvex3bIhnh1"),
+    getKeys("YQCQQRLjyWTpKgChODgqyMzxTh62"),
   ],
+  labels: [
+    getKeys("DO9VAxAM8lRm5l67Quvex3bIhnh1"),
+],
   datasets: [
     {
-      label: "Average Time (seconds)",
+      label: "Average Response Rate (seconds)",
       fill: false,
       fontColor: "black",
       backgroundColor: "red",
@@ -23,14 +53,14 @@ const lineDataSpend = {
       data: [60, 40, 80, 50, 55, 35, 40],
     },
     {
-      label: "Average Time for Student A (seconds)",
+      label: "Average Response Rate for Student A (seconds)",
       fill: false,
-      data: [10, 20, 30, 70, 60, 55, 50], // Student A
+      data: getValues("DO9VAxAM8lRm5l67Quvex3bIhnh1"), // Student A
     },
     {
-      label: "Average Time for Student B (seconds)",
+      label: "Average Response Rate for Student B (seconds)",
       fill: false,
-      data: [70, 40, 50, 60, 30, 45, 80], // Student B
+      data: getValues("YQCQQRLjyWTpKgChODgqyMzxTh62"), // Student B
     }
   ],
 };
@@ -79,7 +109,7 @@ lineData = {
   ],
   datasets: [
     {
-      label: "Average Time (seconds)",
+      label: "Average Response Rate (seconds)",
       fill: false,
       fontColor: "black",
       backgroundColor: "red",
@@ -87,14 +117,14 @@ lineData = {
       data: [60, 40, 80, 50, 55, 35, 40],
     },
     {
-      label: "Average Time for Student A (seconds)",
+      label: "Average Response Rate for Student A (seconds)",
       fill: false,
       data: [10, 20, 30, 70, 60, 55, 50], // Student A
     },
     {
-      label: "Average Time for Student B (seconds)",
+      label: "Average Response Rate for Student B (seconds)",
       fill: false,
-      data: [70, 40, 50, 60, 30, 45, 80], // Student B 
+      data: [70, 40, 50, 60, 30, 45, 80], // Student B
     }
   ],
 };
@@ -106,30 +136,8 @@ class Data extends Component {
     this.changeType = this.changeType.bind(this);
     this.state = {
       selectedType: "Time",
-      users: {},
     };
   }
-
-  componentDidMount() {
-    this.getUsers();
-  }
-
-  getUsers = () => {
-    let db = firebase
-      .firestore()
-      .collection("users")
-    var users = [];
-    db.get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        let prev = { ...this.state.users};
-        prev[doc.id] = doc.data();
-        this.setState({
-          users: prev,
-        });
-      });
-    });
-  };
-
 
   changeType(event) {
     this.setState({
