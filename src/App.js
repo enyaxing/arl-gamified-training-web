@@ -3,6 +3,7 @@ import "./App.css";
 import fire from "./config/Fire";
 import "bootstrap/dist/css/bootstrap.css";
 import InstructorHome from "./instructorHome";
+import StudentHome from "./studentHome";
 import Login from "./components/Login";
 import Data from "./components/Data";
 
@@ -56,7 +57,7 @@ class App extends Component {
         if (this.state.type === "student") {
             return (
                 <div className = "App">
-                    <InstructorHome user={this.state.user} />
+                    <StudentHome user={this.state.user} />
                 </div>
             );
         } else {
