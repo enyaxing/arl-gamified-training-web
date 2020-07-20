@@ -26,11 +26,11 @@ class StudentTracker extends Component {
       .then((doc) => {
         if (doc.exists) {
           let prev = { ...this.state.studentDetails };
-          prev[doc.id] = doc.data();
+          let formattedData = this.formatStudentData(doc.data());
+          prev[doc.id] = formattedData;
           this.setState({
             studentDetails: prev,
           });
-          console.log(prev);
         } else {
           console.log("No such document!");
         }
@@ -40,6 +40,15 @@ class StudentTracker extends Component {
       });
   };
 
+  formatStudentData = (studentData) => {
+    let docData = { ...studentData };
+    docData.totalTime = new Date(studentData.totalTime * 1000)
+      .toISOString()
+      .substr(11, 8);
+    docData.avgResponseRate = studentData.avgResponseRate.toFixed(2);
+    docData.accuracy = studentData.accuracy.toFixed(2);
+    return docData;
+  };
   render() {
     if (Object.keys(this.state.studentDetails).length > 0) {
       return (

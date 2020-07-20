@@ -19,6 +19,10 @@ class InstructorHome extends Component {
     this.getClassList();
   }
 
+  // Remove student
+  // Remove from instructor squad and also student side
+  // Add student
+
   getClassList = () => {
     let db = firebase
       .firestore()
