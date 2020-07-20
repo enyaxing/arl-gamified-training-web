@@ -11,6 +11,7 @@ class App extends Component {
     super(props);
     this.state = {
       user: null,
+      type: null
     };
   }
 
@@ -22,31 +23,62 @@ class App extends Component {
     fire.auth().onAuthStateChanged((user) => {
       console.log(user);
       if (user) {
-        this.setState({ user });
+        this.setState({ user: user });
+        this.getStudentType(user.uid)
       } else {
         this.setState({ user: null });
       }
     });
   };
 
+  getStudentType = (userUID) => {
+      let db = fire
+        .firestore()
+        .collection("users")
+        .doc(userUID);
+      var curr = this
+
+      db.get().then(function(doc) {
+          if (doc.exists) {
+              console.log("Document data:", doc.data().userType);
+              curr.setState({type: doc.data().userType} )
+          } else {
+              // doc.data() will be undefined in this case
+              console.log("No such document!");
+          }
+      }).catch(function(error) {
+          console.log("Error getting document:", error);
+      });
+   };
+
   render() {
-    return (
-      <div className="App">
-        {this.state.user ? (
-          <div>
-            <InstructorHome user={this.state.user} />
-            <Data />
+    if (this.state.user) {
+        if (this.state.type === "student") {
+            return (
+                <div className = "App">
+                    <InstructorHome user={this.state.user} />
+                </div>
+            );
+        } else {
+            return (
+                <div className = "App">
+                    <InstructorHome user={this.state.user} />
+                    <Data />
+                </div>
+            );
+        }
+    } else {
+        return (
+          <div className="App">
+              <div
+                class="d-flex align-items-center justify-content-center"
+                style={{ height: 300 }}
+              >
+                <Login />
+              </div>
           </div>
-        ) : (
-          <div
-            class="d-flex align-items-center justify-content-center"
-            style={{ height: 300 }}
-          >
-            <Login />
-          </div>
-        )}
-      </div>
-    );
+        );
+    }
   }
 }
 
