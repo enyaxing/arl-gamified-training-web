@@ -2,13 +2,17 @@ import React, { Component } from "react";
 import firebase from "./config/Fire";
 import ClassList from "./components/classList";
 import StudentTracker from "./components/studentTracker";
-
+import NavigationBar from "./components/NavigationBar";
+import Container from "react-bootstrap/Container";
 class InstructorHome extends Component {
   // classes is a dictionary of ClassName : {studentID: studentName}
   constructor(props) {
     super(props);
     this.state = {
       classes: {},
+      showStudentTracker: false,
+      showAssignments: false,
+      activeClassId: "",
     };
   }
 
@@ -41,18 +45,36 @@ class InstructorHome extends Component {
     });
   };
 
+  handleShowStudentTracker = (classId) => {
+    this.setState({ showStudentTracker: true });
+    this.setState({ activeClassId: classId });
+    console.log("Student Tracker");
+  };
+
+  handleShowAssignments = (classId) => {
+    this.setState({ showAssignments: true });
+    this.setState({ activeClassId: classId });
+    console.log("Show Assignments");
+  };
+
   render() {
     return (
       <div>
-        <h1>Instructor Portal</h1>
-        <p>{this.props.user.email}</p>
-        <button onClick={this.logout}>Sign out</button>
-        {this.state.classes ? (
-          <ClassList classes={this.state.classes} />
-        ) : (
-          "No classes created"
-        )}
-        <StudentTracker classes={this.state.classes}></StudentTracker>
+        <NavigationBar logout={this.logout}></NavigationBar>
+        <Container>
+          <h1>Instructor Portal</h1>
+          <p>{this.props.user.email}</p>
+          {this.state.classes ? (
+            <ClassList
+              classes={this.state.classes}
+              onShowStudentTracker={this.handleShowStudentTracker}
+              onShowAssignments={this.handleShowAssignments}
+            />
+          ) : (
+            "No classes created"
+          )}
+          {/* <StudentTracker classes={this.state.classes}></StudentTracker> */}
+        </Container>
       </div>
     );
   }
