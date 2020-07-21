@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Table from "react-bootstrap/Table";
 import firebase from "../config/Fire";
+import Button from "react-bootstrap/Button";
 
 class StudentTracker extends Component {
   constructor(props) {
@@ -48,6 +49,7 @@ class StudentTracker extends Component {
   };
 
   render() {
+    const { onRemoveStudent, selectedClass } = this.props;
     if (Object.keys(this.state.studentDetails).length > 0) {
       return (
         <Table responsive>
@@ -73,6 +75,14 @@ class StudentTracker extends Component {
                   <th>{details.avgResponseRate}</th>
                   <th>{details.totalSessions}</th>
                   <th>{details.totalTime}</th>
+                  <th>
+                    <Button
+                      variant="link"
+                      onClick={() => onRemoveStudent(studentID, selectedClass)}
+                    >
+                      Remove
+                    </Button>
+                  </th>
                 </tr>
               )
             )}
