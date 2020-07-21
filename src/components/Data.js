@@ -3,7 +3,7 @@ import { Line } from "react-chartjs-2";
 import firebase from "../config/Fire";
 let lineData;
 
-const getKeys = (studentID) => {
+var getKeys = (studentID) => {
   let db = firebase
     .firestore()
     .collection("users")
@@ -12,15 +12,15 @@ const getKeys = (studentID) => {
   var sessions = []
   db.get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
-      sessions[doc.id] = doc.data().points;
+      sessions[doc.data().time.toDate().toDateString()] = doc.data().points;
     });
-
     console.log(Object.keys(sessions))
     return Object.keys(sessions);
   });
 };
 
-const getValues = (studentID) => {
+
+var getValues = (studentID) => {
   let db = firebase
     .firestore()
     .collection("users")
@@ -30,20 +30,15 @@ const getValues = (studentID) => {
   var values = [];
   db.get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
-      sessions[doc.id] = doc.data().points;
+      sessions[doc.data().time.toDate()] = doc.data().points;
     });
-    values = Object.values(sessions);
-    console.log(values)
-    // const arrAvg = (values => values.reduce((a,b) => a + b, 0) / values.length);
-    // console.log(arrAvg(values) / 4000)
-    return values;
+    console.log(Object.values(sessions))
+    return Object.values(sessions);
   });
 };
 
+
 const lineDataSpend = {
-  type: [
-    getKeys("YQCQQRLjyWTpKgChODgqyMzxTh62"),
-  ],
   labels: [
     getKeys("DO9VAxAM8lRm5l67Quvex3bIhnh1"),
 ],
@@ -61,11 +56,11 @@ const lineDataSpend = {
       fill: false,
       data: getValues("DO9VAxAM8lRm5l67Quvex3bIhnh1"), // Student A
     },
-    {
-      label: "Average Response Rate for Student B (seconds)",
-      fill: false,
-      data: getValues("YQCQQRLjyWTpKgChODgqyMzxTh62"), // Student B
-    }
+    // {
+    //   label: "Average Response Rate for Student B (seconds)",
+    //   fill: false,
+    //   data: getValues("YQCQQRLjyWTpKgChODgqyMzxTh62"), // Student B
+    // }
   ],
 };
 
