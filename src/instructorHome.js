@@ -46,13 +46,13 @@ class InstructorHome extends Component {
   };
 
   handleShowStudentTracker = (classId) => {
-    this.setState({ showStudentTracker: true });
+    this.setState({ showStudentTracker: !this.state.showStudentTracker });
     this.setState({ activeClassId: classId });
     console.log("Student Tracker");
   };
 
   handleShowAssignments = (classId) => {
-    this.setState({ showAssignments: true });
+    this.setState({ showAssignments: !this.state.showAssignments });
     this.setState({ activeClassId: classId });
     console.log("Show Assignments");
   };
@@ -73,7 +73,13 @@ class InstructorHome extends Component {
           ) : (
             "No classes created"
           )}
-          {/* <StudentTracker classes={this.state.classes}></StudentTracker> */}
+          {this.state.showStudentTracker && (
+            <StudentTracker
+              classes={this.state.classes}
+              selectedClass={this.state.activeClassId}
+              showStudentTracker={this.state.showStudentTracker}
+            />
+          )}
         </Container>
       </div>
     );

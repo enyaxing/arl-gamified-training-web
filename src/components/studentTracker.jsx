@@ -5,21 +5,18 @@ import firebase from "../config/Fire";
 class StudentTracker extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       studentDetails: {},
     };
   }
-  componentDidUpdate(prevProps) {
-    if (
-      Object.keys(prevProps.classes).length !==
-      Object.keys(this.props.classes).length
-    ) {
-      Object.keys(this.props.classes["Squad 13"].students).map((studentID) =>
-        this.getStudentDetails(studentID)
-      );
-    }
-    // this.getStudentDetails("YQCQQRLjyWTpKgChODgqyMzxTh62");
+
+  componentDidMount() {
+    Object.keys(
+      this.props.classes[this.props.selectedClass].students
+    ).map((studentID) => this.getStudentDetails(studentID));
   }
+
   getStudentDetails = (studentID) => {
     let db = firebase.firestore().collection("users").doc(studentID);
     db.get()
@@ -49,6 +46,7 @@ class StudentTracker extends Component {
     docData.accuracy = studentData.accuracy.toFixed(2);
     return docData;
   };
+
   render() {
     if (Object.keys(this.state.studentDetails).length > 0) {
       return (

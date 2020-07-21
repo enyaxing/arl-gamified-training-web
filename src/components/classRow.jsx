@@ -10,7 +10,7 @@ class ClassRow extends Component {
     return (
       <Container>
         <Row>
-          <Col>
+          <Col md={8}>
             <p>{classId}</p>
           </Col>
           <Col>
