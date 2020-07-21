@@ -14,6 +14,7 @@ const getKeys = (studentID) => {
     querySnapshot.forEach((doc) => {
       sessions[doc.id] = doc.data().points;
     });
+
     console.log(Object.keys(sessions))
     return Object.keys(sessions);
   });
@@ -25,19 +26,22 @@ const getValues = (studentID) => {
     .collection("users")
     .doc(studentID)
     .collection("sessions");
-  var sessions = []
+  var sessions = [];
+  var values = [];
   db.get().then((querySnapshot) => {
     querySnapshot.forEach((doc) => {
       sessions[doc.id] = doc.data().points;
     });
-    console.log(Object.values(sessions))
-    return Object.values(sessions);
+    values = Object.values(sessions);
+    console.log(values)
+    // const arrAvg = (values => values.reduce((a,b) => a + b, 0) / values.length);
+    // console.log(arrAvg(values) / 4000)
+    return values;
   });
 };
 
 const lineDataSpend = {
   type: [
-    // getKeys("DO9VAxAM8lRm5l67Quvex3bIhnh1"),
     getKeys("YQCQQRLjyWTpKgChODgqyMzxTh62"),
   ],
   labels: [
