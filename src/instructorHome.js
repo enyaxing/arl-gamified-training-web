@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import firebase from "./config/Fire";
 import ClassList from "./components/classList";
+import Assignments from "./components/Assignments";
 import StudentTracker from "./components/studentTracker";
 import NavigationBar from "./components/NavigationBar";
 import Container from "react-bootstrap/Container";
@@ -10,6 +11,7 @@ class InstructorHome extends Component {
     super(props);
     this.state = {
       classes: {},
+      assignments: {},
       showStudentTracker: false,
       showAssignments: false,
       activeClassId: "",
@@ -25,6 +27,37 @@ class InstructorHome extends Component {
 
   // Remove student
   // Remove from instructor squad and also student side
+
+  removeStudent = (studentID, studentClass) => {
+    let instructorDB = firebase
+      .firestore()
+      .collection("users")
+      .doc(this.props.user.uid)
+      .collection("classes")
+      .doc(studentClass);
+
+    instructorDB
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          // Update state variable
+          let prev = { ...this.state.classes };
+          delete prev[studentClass].students[studentID];
+          this.setState({
+            classes: prev,
+          });
+          // Update firestore side
+        } else {
+          console.log("No such document!");
+        }
+      })
+      .catch(function (error) {
+        console.log("Error getting document:", error);
+      });
+
+    // Update student side
+    let studentDB = firebase.firestore().collection("users").doc(studentID);
+  };
   // Add student
 
   getClassList = () => {
@@ -33,7 +66,6 @@ class InstructorHome extends Component {
       .collection("users")
       .doc(this.props.user.uid)
       .collection("classes");
-    var classes = [];
     db.get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         let prev = { ...this.state.classes };
@@ -77,8 +109,15 @@ class InstructorHome extends Component {
             <StudentTracker
               classes={this.state.classes}
               selectedClass={this.state.activeClassId}
-              showStudentTracker={this.state.showStudentTracker}
+              onRemoveStudent={this.removeStudent}
             />
+          )}
+
+          {this.state.showAssignments && (
+            <Assignments
+              selectedClass={this.state.activeClassId}
+              user={this.props.user}
+            ></Assignments>
           )}
         </Container>
       </div>
