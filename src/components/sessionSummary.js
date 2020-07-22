@@ -36,7 +36,7 @@ class SessionSummary extends Component {
 
   render() {
     if (this.state.data.length === 0) {
-        return (<div>Loading ... </div>)
+        return (<div></div>)
     }
     var items = []
     for (var i = 0; i < this.state.data.length; i++) {

@@ -34,7 +34,7 @@ class Session extends Component {
 
   render() {
     if (this.state.data.length === 0) {
-        return (<h1>Loading ... </h1>)
+        return (<div></div>)
     }
     var items = []
     for (var i = 0; i < this.state.data.length; i++) {
