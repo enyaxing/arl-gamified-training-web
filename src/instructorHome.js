@@ -59,7 +59,7 @@ class InstructorHome extends Component {
       });
 
     // Update student side
-    let studentDB = firebase.firestore().collection("users").doc(studentID);
+    // let studentDB = firebase.firestore().collection("users").doc(studentID);
   };
   // Add student
 
