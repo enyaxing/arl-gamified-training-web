@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.sessions
+{
+    height:440px;
+    overflow-y:auto;
+}

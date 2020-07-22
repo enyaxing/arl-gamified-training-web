@@ -39,7 +39,7 @@ class StudentHome extends Component {
         case 'settings':
             return (<Settings />);
         case 'profile':
-            return (<Profile />);
+            return (<Profile user = {this.props.user}/>);
         case 'about':
             return (<About />);
         default:
