@@ -124,7 +124,19 @@ class StudentTracker extends Component {
         </div>
       );
     } else {
-      return <p>No students in this class.</p>;
+      return (
+        <div>
+          <p>No students in this class.</p>
+          <Button
+            variant="light"
+            onClick={() => {
+              onShowAddStudentModal();
+            }}
+          >
+            Add Student
+          </Button>
+        </div>
+      );
     }
   }
 }

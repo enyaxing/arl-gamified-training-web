@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import firebase from "./config/Fire";
+import firebasePkg from "firebase/app";
 import ClassList from "./components/classList";
 import Assignments from "./components/Assignments";
 import StudentTracker from "./components/studentTracker";
@@ -32,24 +33,50 @@ class InstructorHome extends Component {
   // Remove from instructor squad and also student side
 
   removeStudent = (studentID, studentClass) => {
-    let instructorDB = firebase
+    let userRef = firebase.firestore().collection("users").doc(studentID);
+    let instructorRef = firebase
       .firestore()
       .collection("users")
       .doc(this.props.user.uid)
       .collection("classes")
       .doc(studentClass);
-
-    instructorDB
+    instructorRef
       .get()
       .then((doc) => {
         if (doc.exists) {
           // Update state variable
           let prev = { ...this.state.classes };
-          delete prev[studentClass].students[studentID];
+          if (prev[studentClass].students.hasOwnProperty(studentID)) {
+            delete prev[studentClass].students[studentID];
+          }
           this.setState({
             classes: prev,
           });
+
           // Update firestore side
+          doc.ref.update({
+            ["students." +
+            studentID]: firebasePkg.firestore.FieldValue.delete(),
+          });
+
+          // Update user side
+          userRef
+            .get()
+            .then((doc) => {
+              if (doc.exists) {
+                // Update state variable
+                var data = doc.data();
+
+                doc.ref.update({
+                  class: firebasePkg.firestore.FieldValue.delete(),
+                });
+              } else {
+                console.log("No such document!");
+              }
+            })
+            .catch(function (error) {
+              console.log("Error getting document:", error);
+            });
         } else {
           console.log("No such document!");
         }
