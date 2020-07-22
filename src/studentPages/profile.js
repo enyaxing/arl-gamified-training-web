@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import fire from "../config/Fire";
 import Session from "../components/session"
+import SessionSummary from "../components/sessionSummary"
 
 class Profile extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class Profile extends Component {
         question : null
     };
     this.handleSessionChange = this.handleSessionChange.bind(this)
+    this.handleQuestionChange = this.handleQuestionChange.bind(this)
   }
 
   componentDidMount() {
@@ -37,8 +39,14 @@ class Profile extends Component {
 
    handleSessionChange = (event, id) => {
         console.log(id)
+        this.setState({session : null})
         this.setState({session : id})
    }
+   handleQuestionChange = (event, id) => {
+       console.log(id)
+       this.setState({question : null})
+       this.setState({question : id})
+  }
 
   render() {
     if (this.state.data == null) {
@@ -54,6 +62,13 @@ class Profile extends Component {
             <h1>Total Sessions: {this.state.data.totalSessions}</h1>
             <h1>TotalTime: {Math.round(this.state.data.totalTime *10) / 10}</h1>
             <Session user = {this.props.user} session = {this.state.session} handleSessionChange = {this.handleSessionChange}/>
+            <SessionSummary
+                user = {this.props.user}
+                session = {this.state.session}
+                key = {this.state.session}
+                question = {this.state.question}
+                handleQuestionChange = {this.handleQuestionChange}
+                style = {{display: "inline"}}/>
         </div>
     );
   }

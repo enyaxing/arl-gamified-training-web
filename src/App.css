@@ -40,5 +40,6 @@
 .sessions
 {
     height:440px;
+    width: 30%;
     overflow-y:auto;
 }

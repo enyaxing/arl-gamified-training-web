@@ -4,26 +4,28 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import "../App.css";
 
-class Session extends Component {
+class SessionSummary extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        data : []
+        data : [],
     };
   }
 
   componentDidMount() {
-    this.getSessions(this.props.user.uid);
+    if (this.props.session != null) {
+        this.getSummary(this.props.user.uid, this.props.session);
+    }
   }
 
-  getSessions = (userUID) => {
-        let db = fire.firestore().collection("users").doc(userUID).collection("sessions");
+  getSummary = (userUID, session) => {
+        let db = fire.firestore().collection("users").doc(userUID).collection("sessions").doc(session).collection("answers");
         var curr = this;
         db.get()
           .then(function(querySnapshot) {
                   querySnapshot.forEach(function(doc) {
                       // doc.data() is never undefined for query doc snapshots
-                      var newData = [{id : doc.id, date : doc.data().time, type : doc.data().type, points: doc.data().points}];
+                      var newData = [{id : doc.id, expected: doc.data().expected, received: doc.data().received, image: doc.data().image}];
                       curr.setState({data : curr.state.data.concat(newData)});
                   });
               })
@@ -34,15 +36,19 @@ class Session extends Component {
 
   render() {
     if (this.state.data.length === 0) {
-        return (<h1>Loading ... </h1>)
+        return (<div>Loading ... </div>)
     }
     var items = []
     for (var i = 0; i < this.state.data.length; i++) {
+        var correct = "Incorrect"
+        if (this.state.data[i].received === this.state.data[i].expected) {
+            correct = "Correct"
+        }
+
         items.push(
         <ToggleButton value = {this.state.data[i].id} key = {i}>
-            <div>{this.state.data[i].date.toDate().toString()}  </div>
-            <div>{this.state.data[i].type}  </div>
-            <div>{this.state.data[i].points}  </div>
+            <div>{this.state.data[i].image}</div>
+            <div>{correct}</div>
         </ToggleButton>)
     }
 
@@ -50,8 +56,8 @@ class Session extends Component {
         <ToggleButtonGroup
               orientation="vertical"
               exclusive
-              value={this.props.session}
-              onChange={this.props.handleSessionChange}
+              value={this.props.question}
+              onChange={this.props.handleQuestionChange}
               className = "sessions"
             >
             {items}
@@ -60,4 +66,4 @@ class Session extends Component {
   }
 }
 
-export default Session;
+export default SessionSummary;

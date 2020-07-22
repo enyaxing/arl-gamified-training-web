@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adec8273-dba1-4632-b394-33b70287a3bb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/session.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/sessionSummary.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/studentHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/studentHome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/session.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/session.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/studentPages/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/studentPages/profile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,5 +40,11 @@
       <updated>1594995911612</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="697" y="324" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1595429870791">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="697" y="324" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1595429870791" />
   </component>
 </project>
