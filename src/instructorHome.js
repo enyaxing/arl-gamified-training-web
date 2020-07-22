@@ -63,9 +63,9 @@ class InstructorHome extends Component {
   };
   // Add student
 
-  addStudent = (selectedClass) => {
-    console.log("Add student to", selectedClass);
-    this.setState({ activeClass: selectedClass });
+  addStudent = () => {
+    console.log("Add student to", this.state.activeClassId);
+    // this.setState({ activeClass: selectedClass });
   };
 
   toggleShowAddStudentModal = () => {
@@ -135,6 +135,7 @@ class InstructorHome extends Component {
           <AddStudentModal
             show={this.state.showAddStudentModal}
             onHide={this.toggleShowAddStudentModal}
+            onAddStudent={this.addStudent}
           ></AddStudentModal>
         </Container>
       </div>
