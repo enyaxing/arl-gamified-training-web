@@ -61,11 +61,73 @@ class InstructorHome extends Component {
     // Update student side
     // let studentDB = firebase.firestore().collection("users").doc(studentID);
   };
-  // Add student
 
-  addStudent = () => {
+  // Add student
+  // users/grJCmQGHkfb3AgCOfRvbya8p2pk2/classes/Squad 13
+  addStudent = (studentEmail) => {
+    var classId = this.state.activeClassId;
+    var homeInstance = this;
     console.log("Add student to", this.state.activeClassId);
-    // this.setState({ activeClass: selectedClass });
+    console.log(studentEmail);
+    let userDB = firebase.firestore().collection("users");
+    userDB
+      .where("user", "==", studentEmail)
+      .get()
+      .then(function (querySnapshot) {
+        querySnapshot.forEach(function (doc) {
+          // doc.data() is never undefined for query doc snapshots
+          console.log(doc.id, " => ", doc.data());
+          var studentID = doc.id;
+          var data = doc.data();
+          var studentName = data.name;
+
+          // Add a class to user field
+          doc.ref.update({ class: classId });
+          // Add a class to instructor side
+          homeInstance.updateInstructorSideStudentList(studentName, studentID);
+        });
+      })
+      .catch(function (error) {
+        console.log("Error getting documents: ", error);
+      });
+  };
+
+  // Helper function for add student
+  // Add user to class from instructor side
+  updateInstructorSideStudentList = (studentName, studentID) => {
+    let instructorRef = firebase
+      .firestore()
+      .collection("users")
+      .doc(this.props.user.uid)
+      .collection("classes")
+      .doc(this.state.activeClassId);
+
+    instructorRef
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          var studentUpdate = {};
+          studentUpdate["students." + studentID] = studentName;
+          console.log(studentUpdate);
+          doc.ref.update(studentUpdate);
+          this.updateClassesDict(studentName, studentID);
+          console.log("Logged!");
+        } else {
+          console.log("No such document!");
+        }
+      })
+      .catch(function (error) {
+        console.log("Error getting document:", error);
+      });
+  };
+
+  // Helper function to add a student
+  updateClassesDict = (studentName, studentID) => {
+    let prev = { ...this.state.classes };
+    prev[this.state.activeClassId].students[studentID] = studentName;
+    this.setState({
+      classes: prev,
+    });
   };
 
   toggleShowAddStudentModal = () => {

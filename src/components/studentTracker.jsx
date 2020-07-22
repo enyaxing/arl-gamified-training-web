@@ -19,13 +19,12 @@ class StudentTracker extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    console.log(
-      Object.keys(prevProps.classes[this.props.selectedClass].students).length
-    );
-
-    console.log(
-      Object.keys(this.props.classes[this.props.selectedClass].students).length
-    );
+    // console.log(
+    //   Object.keys(prevProps.classes[this.props.selectedClass].students).length
+    // );
+    // console.log(
+    //   Object.keys(this.props.classes[this.props.selectedClass].students).length
+    // );
     // if (
     //   Object.keys(prevProps.classes[this.props.selectedClass].students)
     //     .length != Object.keys(this.state.studentDetails).length
@@ -85,7 +84,7 @@ class StudentTracker extends Component {
                 <th>Total Sessions (#)</th>
                 <th>Total Time (s)</th>
                 <th>
-                  <Button variant="link">Edit Students</Button>
+                  <Button variant="light">Edit Students</Button>
                 </th>
               </tr>
             </thead>
@@ -101,7 +100,7 @@ class StudentTracker extends Component {
                     <th>{details.totalTime}</th>
                     <th>
                       <Button
-                        variant="link"
+                        variant="danger"
                         onClick={() =>
                           onRemoveStudent(studentID, selectedClass)
                         }
