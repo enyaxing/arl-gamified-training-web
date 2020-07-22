@@ -18,6 +18,24 @@ class StudentTracker extends Component {
     ).map((studentID) => this.getStudentDetails(studentID));
   }
 
+  componentDidUpdate(prevProps) {
+    console.log(
+      Object.keys(prevProps.classes[this.props.selectedClass].students).length
+    );
+
+    console.log(
+      Object.keys(this.props.classes[this.props.selectedClass].students).length
+    );
+    // if (
+    //   Object.keys(prevProps.classes[this.props.selectedClass].students)
+    //     .length != Object.keys(this.state.studentDetails).length
+    // ) {
+    //   Object.keys(
+    //     this.props.classes[this.props.selectedClass].students
+    //   ).map((studentID) => this.getStudentDetails(studentID));
+    // }
+  }
+
   getStudentDetails = (studentID) => {
     let db = firebase.firestore().collection("users").doc(studentID);
     db.get()
@@ -49,45 +67,62 @@ class StudentTracker extends Component {
   };
 
   render() {
-    const { onRemoveStudent, selectedClass } = this.props;
+    const {
+      onRemoveStudent,
+      selectedClass,
+      onShowAddStudentModal,
+    } = this.props;
     if (Object.keys(this.state.studentDetails).length > 0) {
       return (
-        <Table responsive>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Student ID</th>
-              <th>Focus</th>
-              <th>Accuracy (%)</th>
-              <th>Average Response Rate (s)</th>
-              <th>Total Sessions (#)</th>
-              <th>Total Time (s)</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Object.entries(this.state.studentDetails).map(
-              ([studentID, details]) => (
-                <tr key={studentID}>
-                  <td>{details.name}</td>
-                  <td>{studentID}</td>
-                  <td>{details.focus}</td>
-                  <td>{details.accuracy}</td>
-                  <th>{details.avgResponseRate}</th>
-                  <th>{details.totalSessions}</th>
-                  <th>{details.totalTime}</th>
-                  <th>
-                    <Button
-                      variant="link"
-                      onClick={() => onRemoveStudent(studentID, selectedClass)}
-                    >
-                      Remove
-                    </Button>
-                  </th>
-                </tr>
-              )
-            )}
-          </tbody>
-        </Table>
+        <div>
+          <Table responsive>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Focus</th>
+                <th>Accuracy (%)</th>
+                <th>Average Response Rate (s)</th>
+                <th>Total Sessions (#)</th>
+                <th>Total Time (s)</th>
+                <th>
+                  <Button variant="link">Edit Students</Button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.entries(this.state.studentDetails).map(
+                ([studentID, details]) => (
+                  <tr key={studentID}>
+                    <td>{details.name}</td>
+                    <td>{details.focus}</td>
+                    <td>{details.accuracy}</td>
+                    <th>{details.avgResponseRate}</th>
+                    <th>{details.totalSessions}</th>
+                    <th>{details.totalTime}</th>
+                    <th>
+                      <Button
+                        variant="link"
+                        onClick={() =>
+                          onRemoveStudent(studentID, selectedClass)
+                        }
+                      >
+                        Remove
+                      </Button>
+                    </th>
+                  </tr>
+                )
+              )}
+            </tbody>
+          </Table>
+          <Button
+            variant="light"
+            onClick={() => {
+              onShowAddStudentModal();
+            }}
+          >
+            Add Student
+          </Button>
+        </div>
       );
     } else {
       return <p>No students in this class.</p>;

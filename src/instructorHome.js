@@ -3,8 +3,10 @@ import firebase from "./config/Fire";
 import ClassList from "./components/classList";
 import Assignments from "./components/Assignments";
 import StudentTracker from "./components/studentTracker";
+import AddStudentModal from "./components/addStudentModal";
 import NavigationBar from "./components/NavigationBar";
 import Container from "react-bootstrap/Container";
+
 class InstructorHome extends Component {
   // classes is a dictionary of ClassName : {studentID: studentName}
   constructor(props) {
@@ -14,6 +16,7 @@ class InstructorHome extends Component {
       assignments: {},
       showStudentTracker: false,
       showAssignments: false,
+      showAddStudentModal: false,
       activeClassId: "",
     };
   }
@@ -59,6 +62,15 @@ class InstructorHome extends Component {
     let studentDB = firebase.firestore().collection("users").doc(studentID);
   };
   // Add student
+
+  addStudent = (selectedClass) => {
+    console.log("Add student to", selectedClass);
+    this.setState({ activeClass: selectedClass });
+  };
+
+  toggleShowAddStudentModal = () => {
+    this.setState({ showAddStudentModal: !this.state.showAddStudentModal });
+  };
 
   getClassList = () => {
     let db = firebase
@@ -110,6 +122,7 @@ class InstructorHome extends Component {
               classes={this.state.classes}
               selectedClass={this.state.activeClassId}
               onRemoveStudent={this.removeStudent}
+              onShowAddStudentModal={this.toggleShowAddStudentModal}
             />
           )}
 
@@ -119,6 +132,10 @@ class InstructorHome extends Component {
               user={this.props.user}
             ></Assignments>
           )}
+          <AddStudentModal
+            show={this.state.showAddStudentModal}
+            onHide={this.toggleShowAddStudentModal}
+          ></AddStudentModal>
         </Container>
       </div>
     );
