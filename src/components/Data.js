@@ -3,46 +3,9 @@ import { Line } from "react-chartjs-2";
 import firebase from "../config/Fire";
 let lineData;
 
-const getKeys = (studentID) => {
-  let db = firebase
-    .firestore()
-    .collection("users")
-    .doc(studentID)
-    .collection("sessions");
-  var sessions = []
-  db.get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-      sessions[doc.id] = doc.data().points;
-    });
-    console.log(Object.keys(sessions))
-    return Object.keys(sessions);
-  });
-};
-
-const getValues = (studentID) => {
-  let db = firebase
-    .firestore()
-    .collection("users")
-    .doc(studentID)
-    .collection("sessions");
-  var sessions = []
-  db.get().then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-      sessions[doc.id] = doc.data().points;
-    });
-    console.log(Object.values(sessions))
-    return Object.values(sessions);
-  });
-};
-
-const lineDataSpend = {
-  type: [
-    // getKeys("DO9VAxAM8lRm5l67Quvex3bIhnh1"),
-    getKeys("YQCQQRLjyWTpKgChODgqyMzxTh62"),
-  ],
-  labels: [
-    getKeys("DO9VAxAM8lRm5l67Quvex3bIhnh1"),
-],
+const firstLine = {
+  labels: ["Tue Jul 07 2020 06:51:37 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 09:51:38 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 10:10:04 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 10:12:40 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 10:15:17 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 10:16:49 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 13:01:05 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 13:03:06 GMT-0700 (Pacific Daylight Time)", "Wed Jul 08 2020 10:08:58 GMT-0700 (Pacific Daylight Time)", "Thu Jul 09 2020 12:16:06 GMT-0700 (Pacific Daylight Time)", "Thu Jul 09 2020 12:17:00 GMT-0700 (Pacific Daylight Time)", "Wed Jul 15 2020 07:12:10 GMT-0700 (Pacific Daylight Time)", "Wed Jul 15 2020 07:16:45 GMT-0700 (Pacific Daylight Time)", "Wed Jul 15 2020 07:20:44 GMT-0700 (Pacific Daylight Time)", "Wed Jul 15 2020 07:28:30 GMT-0700 (Pacific Daylight Time)"]
+,
   datasets: [
     {
       label: "Average Response Rate (seconds)",
@@ -50,31 +13,24 @@ const lineDataSpend = {
       fontColor: "black",
       backgroundColor: "red",
       borderColor: "red",
-      data: [60, 40, 80, 50, 55, 35, 40],
+      data: [1500, 1700, 1850, 1900, 2000, 2200, 1500, 1100, 800, 900, 2000, 400],
     },
     {
       label: "Average Response Rate for Student A (seconds)",
       fill: false,
-      data: getValues("DO9VAxAM8lRm5l67Quvex3bIhnh1"), // Student A
+      data: [1237, 1326, 761, 657, 729, 467, 989, 827, 504, 998, 664, 1600, 2000, 1200, 800], // Student A
     },
     {
       label: "Average Response Rate for Student B (seconds)",
       fill: false,
-      data: getValues("YQCQQRLjyWTpKgChODgqyMzxTh62"), // Student B
+      data: [2207], // Student B
     }
   ],
 };
 
-const lineDataRev = {
-  labels: [
-    "July 15",
-    "July 16",
-    "July 17",
-    "July 18",
-    "July 19",
-    "July 20",
-    "July 21",
-  ],
+const secondLine = {
+  labels: ["Tue Jul 07 2020 06:51:37 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 09:51:38 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 10:10:04 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 10:12:40 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 10:15:17 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 10:16:49 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 13:01:05 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 13:03:06 GMT-0700 (Pacific Daylight Time)", "Wed Jul 08 2020 10:08:58 GMT-0700 (Pacific Daylight Time)", "Thu Jul 09 2020 12:16:06 GMT-0700 (Pacific Daylight Time)", "Thu Jul 09 2020 12:17:00 GMT-0700 (Pacific Daylight Time)", "Wed Jul 15 2020 07:12:10 GMT-0700 (Pacific Daylight Time)", "Wed Jul 15 2020 07:16:45 GMT-0700 (Pacific Daylight Time)", "Wed Jul 15 2020 07:20:44 GMT-0700 (Pacific Daylight Time)", "Wed Jul 15 2020 07:28:30 GMT-0700 (Pacific Daylight Time)"]
+,
   datasets: [
     {
       label: "Average Correctness (%)",
@@ -82,31 +38,24 @@ const lineDataRev = {
       fontColor: "black",
       backgroundColor: "blue",
       borderColor: "blue",
-      data: [25, 65, 55, 85, 100, 75, 65],
+      data: [1500, 1700, 1850, 1900, 2000, 2200, 1500, 1100, 800, 900, 2000, 400],
     },
     {
       label: "Average Correctness for Student A (%)",
       fill: false,
-      data: [10, 20, 60, 40, 50, 30, 100], // Student A
+      data: [1237, 1326, 761, 657, 729, 467, 989, 827, 504, 998, 664, 1600, 2000, 1200, 800], // Student A
     },
     {
       label: "Average Correctness for Student B (%)",
       fill: false,
-      data: [70, 60, 40, 55, 65, 30, 80], // Student B
+      data: [2207], // Student B
     }
   ],
 };
 
 lineData = {
-  labels: [
-    "July 15",
-    "July 16",
-    "July 17",
-    "July 18",
-    "July 19",
-    "July 20",
-    "July 21",
-  ],
+  labels: ["Tue Jul 07 2020 06:51:37 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 09:51:38 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 10:10:04 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 10:12:40 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 10:15:17 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 10:16:49 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 13:01:05 GMT-0700 (Pacific Daylight Time)", "Tue Jul 07 2020 13:03:06 GMT-0700 (Pacific Daylight Time)", "Wed Jul 08 2020 10:08:58 GMT-0700 (Pacific Daylight Time)", "Thu Jul 09 2020 12:16:06 GMT-0700 (Pacific Daylight Time)", "Thu Jul 09 2020 12:17:00 GMT-0700 (Pacific Daylight Time)", "Wed Jul 15 2020 07:12:10 GMT-0700 (Pacific Daylight Time)", "Wed Jul 15 2020 07:16:45 GMT-0700 (Pacific Daylight Time)", "Wed Jul 15 2020 07:20:44 GMT-0700 (Pacific Daylight Time)", "Wed Jul 15 2020 07:28:30 GMT-0700 (Pacific Daylight Time)"]
+,
   datasets: [
     {
       label: "Average Response Rate (seconds)",
@@ -135,21 +84,37 @@ class Data extends Component {
     super(props);
     this.changeType = this.changeType.bind(this);
     this.state = {
+      sessions: {},
       selectedType: "Time",
     };
   }
 
   changeType(event) {
+    let db = firebase.firestore().collection("users").doc("DO9VAxAM8lRm5l67Quvex3bIhnh1").collection("sessions");
+    var sessions = []
+    db.get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        sessions[doc.data().time.toDate()] = doc.data().points;
+      });
+    });
+
     this.setState({
       selectedType: event.target.value,
+      sessions: sessions,
     });
 
     switch (event.target.value) {
       case "Time":
-        lineData = lineDataSpend;
+      firstLine.labels = Object.keys(this.state.sessions)
+      firstLine.datasets[1].data = Object.values(this.state.sessions)
+      console.log(Object.keys(this.state.sessions))
+      console.log(Object.values(this.state.sessions))
+      // firstLine.datasets[2].data = Object.values(this.state.sessions2)
+      lineData = firstLine;
+
         break;
       case "Accuracy":
-        lineData = lineDataRev;
+        lineData = secondLine;
         break;
       default:
     }

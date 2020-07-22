@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import InstructorHome from "./instructorHome";
 import StudentHome from "./studentHome";
 import Login from "./components/Login";
