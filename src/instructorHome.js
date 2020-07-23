@@ -9,7 +9,7 @@ import NavigationBar from "./components/NavigationBar";
 import Container from "react-bootstrap/Container";
 
 class InstructorHome extends Component {
-  // classes is a dictionary of ClassName : {studentID: studentName}
+  // Classes is a list of all classes
   // Changing it to just list of class names
   constructor(props) {
     super(props);

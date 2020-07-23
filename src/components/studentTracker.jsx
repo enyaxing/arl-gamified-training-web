@@ -114,8 +114,6 @@ class StudentTracker extends Component {
             .then((doc) => {
               if (doc.exists) {
                 // Update state variable
-                var data = doc.data();
-
                 doc.ref.update({
                   class: firebasePkg.firestore.FieldValue.delete(),
                 });
@@ -175,9 +173,7 @@ class StudentTracker extends Component {
               if (doc.exists) {
                 var studentUpdate = {};
                 studentUpdate["students." + studentID] = studentName;
-                console.log(studentUpdate);
                 doc.ref.update(studentUpdate);
-                console.log("Logged!");
               } else {
                 console.log("No such document!");
               }
