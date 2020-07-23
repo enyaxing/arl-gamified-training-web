@@ -15,9 +15,9 @@ class StatDetails extends Component {
     for (var key in this.props.info) {
         // check if the property/key is defined in the object itself, not in parent
         if (this.props.type === "percent") {
-            parsedInfo.push(<li>{key + "   " + Math.round(this.props.info[key] * 1000) / 10 + "%"}</li>)
+            parsedInfo.push(<li key = {key}>{key + "   " + Math.round(this.props.info[key] * 1000) / 10 + "%"}</li>)
         } else if (this.props.type ==="second") {
-            parsedInfo.push(<li>{key + "   " + Math.round(this.props.info[key] * 10) / 10 + " s"}</li>)
+            parsedInfo.push(<li key = {key}>{key + "   " + Math.round(this.props.info[key] * 10) / 10 + " s"}</li>)
         }
     }
     return (
