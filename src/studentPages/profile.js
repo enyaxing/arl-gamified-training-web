@@ -3,6 +3,7 @@ import fire from "../config/Fire";
 import Session from "../components/session";
 import SessionSummary from "../components/sessionSummary";
 import SummaryDetail from "../components/summaryDetail";
+import StudentStats from "../components/studentStats";
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
@@ -71,7 +72,7 @@ class Profile extends Component {
                     answer = {this.state.question}/>
                 </div>);
     } else if (this.state.location === "stats") {
-        return (<h1>Stats</h1>)
+        return (<StudentStats user = {this.props.user}/>)
     } else if (this.state.location === "achievements") {
         return (<h1>No Achievements</h1>);
     }

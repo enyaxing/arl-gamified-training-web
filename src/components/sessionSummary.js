@@ -47,7 +47,7 @@ class SessionSummary extends Component {
 
         items.push(
         <ToggleButton value = {this.state.data[i].id} key = {i}>
-            <div>{this.state.data[i].image}</div>
+            <img src={process.env.PUBLIC_URL + this.state.data[i].image} alt={this.state.data[i].image} width="50" height="50"/>
             <div>{correct}</div>
         </ToggleButton>)
     }
