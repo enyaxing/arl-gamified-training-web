@@ -9,7 +9,7 @@ class ClassList extends Component {
         <br></br>
         <h2>CLASSES</h2>
         {/* {console.log(Object.keys(classes))} */}
-        {Object.keys(classes).map((classId) => (
+        {classes.map((classId) => (
           <ClassRow
             classId={classId}
             key={classId}
