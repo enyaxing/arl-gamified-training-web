@@ -1,22 +1,23 @@
 import React, { Component } from "react";
 import firebase from "./config/Fire";
+
 import ClassList from "./components/classList";
 import Assignments from "./components/Assignments";
 import StudentTracker from "./components/studentTracker";
-import AddStudentModal from "./components/addStudentModal";
+
 import NavigationBar from "./components/NavigationBar";
 import Container from "react-bootstrap/Container";
 
 class InstructorHome extends Component {
-  // classes is a dictionary of ClassName : {studentID: studentName}
+  // Classes is a list of all classes
+  // Changing it to just list of class names
   constructor(props) {
     super(props);
     this.state = {
-      classes: {},
+      classes: [],
       assignments: {},
       showStudentTracker: false,
       showAssignments: false,
-      showAddStudentModal: false,
       activeClassId: "",
     };
   }
@@ -28,50 +29,6 @@ class InstructorHome extends Component {
     this.getClassList();
   }
 
-  // Remove student
-  // Remove from instructor squad and also student side
-
-  removeStudent = (studentID, studentClass) => {
-    let instructorDB = firebase
-      .firestore()
-      .collection("users")
-      .doc(this.props.user.uid)
-      .collection("classes")
-      .doc(studentClass);
-
-    instructorDB
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          // Update state variable
-          let prev = { ...this.state.classes };
-          delete prev[studentClass].students[studentID];
-          this.setState({
-            classes: prev,
-          });
-          // Update firestore side
-        } else {
-          console.log("No such document!");
-        }
-      })
-      .catch(function (error) {
-        console.log("Error getting document:", error);
-      });
-
-    // Update student side
-    // let studentDB = firebase.firestore().collection("users").doc(studentID);
-  };
-  // Add student
-
-  addStudent = () => {
-    console.log("Add student to", this.state.activeClassId);
-    // this.setState({ activeClass: selectedClass });
-  };
-
-  toggleShowAddStudentModal = () => {
-    this.setState({ showAddStudentModal: !this.state.showAddStudentModal });
-  };
-
   getClassList = () => {
     let db = firebase
       .firestore()
@@ -80,8 +37,7 @@ class InstructorHome extends Component {
       .collection("classes");
     db.get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
-        let prev = { ...this.state.classes };
-        prev[doc.id] = doc.data();
+        let prev = [...this.state.classes, doc.id];
         this.setState({
           classes: prev,
         });
@@ -121,8 +77,7 @@ class InstructorHome extends Component {
             <StudentTracker
               classes={this.state.classes}
               selectedClass={this.state.activeClassId}
-              onRemoveStudent={this.removeStudent}
-              onShowAddStudentModal={this.toggleShowAddStudentModal}
+              user={this.props.user}
             />
           )}
 
@@ -132,11 +87,6 @@ class InstructorHome extends Component {
               user={this.props.user}
             ></Assignments>
           )}
-          <AddStudentModal
-            show={this.state.showAddStudentModal}
-            onHide={this.toggleShowAddStudentModal}
-            onAddStudent={this.addStudent}
-          ></AddStudentModal>
         </Container>
       </div>
     );

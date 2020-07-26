@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import firebase from "../config/Fire";
-import Button from "react-bootstrap/Button";
 import Table from "react-bootstrap/Table";
 
 class Assignments extends Component {

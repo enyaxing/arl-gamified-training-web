@@ -36,3 +36,24 @@
     transform: rotate(360deg);
   }
 }
+
+.sessions
+{
+    height:440px;
+    width: 30%;
+    overflow-y:auto;
+    float:left;
+}
+.clearBoth {
+    clear:both;
+}
+
+.scroll
+{
+    height:440px;
+    overflow-y:auto;
+}
+.quarter {
+    width: 25%;
+    float:left;
+}

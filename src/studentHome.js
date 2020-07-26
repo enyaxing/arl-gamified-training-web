@@ -31,7 +31,7 @@ class StudentHome extends Component {
   changeLocation = () => {
     switch(this.state.location) {
         case 'question':
-            return (<Question />);
+            return (<Question user = {this.props.user}/>);
         case 'training':
             return (<Training />);
         case 'gonogo':
@@ -39,7 +39,7 @@ class StudentHome extends Component {
         case 'settings':
             return (<Settings />);
         case 'profile':
-            return (<Profile />);
+            return (<Profile user = {this.props.user}/>);
         case 'about':
             return (<About />);
         default:
