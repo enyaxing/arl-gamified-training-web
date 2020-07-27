@@ -4,6 +4,8 @@ import firebase from "../config/Fire";
 import Button from "react-bootstrap/Button";
 import AddStudentModal from "../components/addStudentModal";
 import firebasePkg from "firebase/app";
+import MultipleStudentAddModal from "./multipleStudentAddModal";
+
 class StudentTracker extends Component {
   constructor(props) {
     super(props);
@@ -11,6 +13,7 @@ class StudentTracker extends Component {
     this.state = {
       studentDetails: {},
       showAddStudentModal: false,
+      showMultipleAddStudentModal: false,
     };
   }
 
@@ -78,6 +81,12 @@ class StudentTracker extends Component {
     this.setState({ showAddStudentModal: !this.state.showAddStudentModal });
   };
 
+  toggleShowMultipleAddStudentModal = () => {
+    this.setState({
+      showMultipleAddStudentModal: !this.state.showMultipleAddStudentModal,
+    });
+  };
+
   // Remove student
   // Remove from instructor squad and also student side
 
@@ -139,7 +148,6 @@ class StudentTracker extends Component {
   // Add student
   // users/grJCmQGHkfb3AgCOfRvbya8p2pk2/classes/Squad 13
   addStudent = (studentEmail) => {
-    var classId = this.props.selectedClass;
     var homeInstance = this;
     console.log("Add student to", this.props.selectedClass);
     console.log(studentEmail);
@@ -192,7 +200,6 @@ class StudentTracker extends Component {
   };
 
   render() {
-    const { selectedClass } = this.props;
     if (Object.keys(this.state.studentDetails).length > 0) {
       return (
         <div>
@@ -241,11 +248,27 @@ class StudentTracker extends Component {
           >
             Add Student
           </Button>
+
+          <Button
+            variant="dark"
+            onClick={() => {
+              this.toggleShowMultipleAddStudentModal();
+            }}
+          >
+            Add Multiple Students
+          </Button>
+
           <AddStudentModal
             show={this.state.showAddStudentModal}
             onHide={this.toggleShowAddStudentModal}
             onAddStudent={this.addStudent}
           ></AddStudentModal>
+
+          <MultipleStudentAddModal
+            show={this.state.showMultipleAddStudentModal}
+            onHide={this.toggleShowMultipleAddStudentModal}
+            onAddStudent={this.addStudent}
+          ></MultipleStudentAddModal>
         </div>
       );
     } else {
@@ -258,13 +281,29 @@ class StudentTracker extends Component {
               this.toggleShowAddStudentModal();
             }}
           >
-            Add Student
+            Add Individual Student
           </Button>
+
+          <Button
+            variant="dark"
+            onClick={() => {
+              this.toggleShowMultipleAddStudentModal();
+            }}
+          >
+            Add Multiple Students
+          </Button>
+
           <AddStudentModal
             show={this.state.showAddStudentModal}
             onHide={this.toggleShowAddStudentModal}
             onAddStudent={this.addStudent}
           ></AddStudentModal>
+
+          <MultipleStudentAddModal
+            show={this.state.showMultipleAddStudentModal}
+            onHide={this.toggleShowMultipleAddStudentModal}
+            onAddStudent={this.addStudent}
+          ></MultipleStudentAddModal>
         </div>
       );
     }

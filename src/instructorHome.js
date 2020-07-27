@@ -15,7 +15,6 @@ class InstructorHome extends Component {
     super(props);
     this.state = {
       classes: [],
-      assignments: {},
       showStudentTracker: false,
       showAssignments: false,
       activeClassId: "",

@@ -1,28 +1,28 @@
 import React, { Component } from "react";
-import ReactFileReader from 'react-file-reader';
+import ReactFileReader from "react-file-reader";
 
+// Pass in handleFiles as props
 class Upload extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
+    this.state = {};
   }
 
-  handleFiles = files => {
-      var reader = new FileReader();
-      reader.onload = function(e) {
-          // Use reader.result
-          alert(reader.result)
-      }
-      reader.readAsText(files[0]);
-  }
+  // handleFiles = files => {
+  //     var reader = new FileReader();
+  //     reader.onload = function(e) {
+  //         // Use reader.result
+  //         alert(reader.result)
+  //     }
+  //     reader.readAsText(files[0]);
+  // }
 
   render() {
+    const { handleFiles, uploadText } = this.props;
     return (
       <div>
-        <ReactFileReader handleFiles={this.handleFiles} fileTypes={'.csv'}>
-            <button className='btn'>Upload</button>
+        <ReactFileReader handleFiles={handleFiles} fileTypes={".csv"}>
+          <button className="btn">{uploadText}</button>
         </ReactFileReader>
       </div>
     );
