@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import fire from "../config/Fire";
 import "../App.css";
 
 class StatDetails extends Component {

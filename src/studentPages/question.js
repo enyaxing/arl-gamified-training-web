@@ -47,25 +47,36 @@ class Question extends Component {
 
   /** Calculates which regulatory focus type will be most beneficial to the user. Returns the type as either preventino, promotion, or neutral. */
   analyzeScore = () => {
-      let initialScores = this.calculateScore();
-      let scores = this.calculateIntervals(initialScores[0], initialScores[1]);
+    var answered = true;
+    for (var i = 0; i < this.state.values.length; i++) {
+        if (this.state.values[i] === 0) {
+            answered = false
+        }
+    }
+    if (answered) {
+        let initialScores = this.calculateScore();
+        let scores = this.calculateIntervals(initialScores[0], initialScores[1]);
 
-      let promotion = scores[0][0];
-      let prevention = scores[1][0];
-      let control = scores[2][0];
+        let promotion = scores[0][0];
+        let prevention = scores[1][0];
+        let control = scores[2][0];
 
-      let maxVal = Math.max(prevention, promotion, control);
-      var selected = "";
-      if  (maxVal === prevention) {
+        let maxVal = Math.max(prevention, promotion, control);
+        var selected = "";
+        if  (maxVal === prevention) {
           selected = "prevention";
-      } else if (maxVal === promotion) {
+        } else if (maxVal === promotion) {
           selected = "promotion";
-      } else {
+        } else {
           selected = "neutral";
-      }
-      console.log(initialScores);
-      console.log(selected);
-      this.setFocus(this.props.user.uid, selected);
+        }
+        console.log(initialScores);
+        console.log(selected);
+        this.setFocus(this.props.user.uid, selected);
+        alert("Answers successfully submitted.  You are " + selected + " oriented.")
+    } else {
+        alert("Please answer all questions before submitting.")
+    }
   }
 
       /** Heuristic from Dr. Benjamin Files. Modified from Python to Swift.

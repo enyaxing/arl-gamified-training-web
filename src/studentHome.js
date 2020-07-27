@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import firebase from "./config/Fire";
-import Upload from "./components/upload";
 import NavBar from "./components/navbar";
 import Home from "./studentPages/home";
 import Question from "./studentPages/question";
