@@ -19,7 +19,7 @@ const AddAssignmentModal = ({ show, onHide, onCreateAssignment }) => {
 
   // images is a dictionary with path as key and image as value
   // use <img src={images['KEY']} /> to display image
-  const images = importAll(require.context('../CID Images'));
+  const images = importAll(require.context('../../public/CID Images'));
 
   // array of keys in images
   var keys = Object.keys(images);
