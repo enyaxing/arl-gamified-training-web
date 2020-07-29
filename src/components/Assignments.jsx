@@ -140,7 +140,7 @@ class Assignments extends Component {
         </React.Fragment>
       );
     } else {
-      return <p>No students in this class.</p>;
+      return <p>No assignments created.</p>;
     }
   }
 }

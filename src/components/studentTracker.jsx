@@ -240,11 +240,13 @@ class StudentTracker extends Component {
               )}
             </tbody>
           </Table>
+
           <Button
-            variant="light"
+            variant="primary"
             onClick={() => {
               this.toggleShowAddStudentModal();
             }}
+            style={{ margin: "5px" }}
           >
             Add Student
           </Button>
@@ -254,6 +256,7 @@ class StudentTracker extends Component {
             onClick={() => {
               this.toggleShowMultipleAddStudentModal();
             }}
+            style={{ margin: "5px" }}
           >
             Add Multiple Students
           </Button>
@@ -276,10 +279,11 @@ class StudentTracker extends Component {
         <div>
           <p>No students in this class.</p>
           <Button
-            variant="light"
+            variant="primary"
             onClick={() => {
               this.toggleShowAddStudentModal();
             }}
+            style={{ margin: "5px" }}
           >
             Add Individual Student
           </Button>
@@ -289,6 +293,7 @@ class StudentTracker extends Component {
             onClick={() => {
               this.toggleShowMultipleAddStudentModal();
             }}
+            style={{ margin: "5px" }}
           >
             Add Multiple Students
           </Button>

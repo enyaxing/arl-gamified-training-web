@@ -45,15 +45,15 @@ class InstructorHome extends Component {
   };
 
   handleShowStudentTracker = (classId) => {
+    this.setState({ showAssignments: false });
     this.setState({ showStudentTracker: !this.state.showStudentTracker });
     this.setState({ activeClassId: classId });
-    console.log("Student Tracker");
   };
 
   handleShowAssignments = (classId) => {
+    this.setState({ showStudentTracker: false });
     this.setState({ showAssignments: !this.state.showAssignments });
     this.setState({ activeClassId: classId });
-    console.log("Show Assignments");
   };
 
   render() {
