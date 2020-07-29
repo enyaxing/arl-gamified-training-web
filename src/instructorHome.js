@@ -61,8 +61,11 @@ class InstructorHome extends Component {
       <div>
         <NavigationBar logout={this.logout}></NavigationBar>
         <Container>
-          <h1>Instructor Portal</h1>
-          <p>{this.props.user.email}</p>
+          <div style={{ marginTop: "30px" }}>
+            <h1>Instructor Portal</h1>
+            <p>{this.props.user.email}</p>
+          </div>
+
           {this.state.classes ? (
             <ClassList
               classes={this.state.classes}
