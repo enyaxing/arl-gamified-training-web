@@ -64,9 +64,9 @@ class Assignments extends Component {
         description: description,
         friendly: friendlyUnits,
         enemy: enemyUnits,
-        friendlyAccuracy: parseInt(friendlyAccuracy).toFixed(2),
-        enemyAccuracy: parseInt(enemyAccuracy).toFixed(2),
-        time: timeRequirement,
+        friendlyAccuracy: parseFloat(friendlyAccuracy),
+        enemyAccuracy: parseFloat(enemyAccuracy),
+        time: parseFloat(timeRequirement),
       })
       .then(function () {
         console.log("Document successfully written!");
