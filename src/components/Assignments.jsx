@@ -50,11 +50,6 @@ class Assignments extends Component {
     enemyAccuracy,
     timeRequirement
   ) => {
-    console.log("Create assignment", this.props.selectedClass);
-    console.log(typeof name);
-    console.log(description);
-    console.log(friendlyUnits);
-
     let classDB = firebase
       .firestore()
       .collection("users")
@@ -69,8 +64,8 @@ class Assignments extends Component {
         description: description,
         friendly: friendlyUnits,
         enemy: enemyUnits,
-        friendlyAccuracy: friendlyAccuracy,
-        enemyAccuracy: enemyAccuracy,
+        friendlyAccuracy: parseInt(friendlyAccuracy).toFixed(2),
+        enemyAccuracy: parseInt(enemyAccuracy).toFixed(2),
         time: timeRequirement,
       })
       .then(function () {
