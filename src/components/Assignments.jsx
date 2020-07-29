@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import firebase from "../config/Fire";
 import Table from "react-bootstrap/Table";
 import AddAssignmentModal from "./addAssignmentModal";
@@ -36,11 +36,51 @@ class Assignments extends Component {
   };
 
   toggleShowAddAssignmentModal = () => {
-    this.setState({ showAddAssignmentModal: !this.state.showAddStudentModal });
+    this.setState({
+      showAddAssignmentModal: !this.state.showAddAssignmentModal,
+    });
   };
 
-  createAssignment = () => {
-    console.log("Hi");
+  createAssignment = (
+    name,
+    description,
+    friendlyUnits,
+    enemyUnits,
+    friendlyAccuracy,
+    enemyAccuracy,
+    timeRequirement
+  ) => {
+    console.log("Create assignment", this.props.selectedClass);
+    console.log(typeof name);
+    console.log(description);
+    console.log(friendlyUnits);
+
+    let classDB = firebase
+      .firestore()
+      .collection("users")
+      .doc(this.props.user.uid)
+      .collection("classes")
+      .doc(this.props.selectedClass);
+    let assignmentRef = classDB.collection("assignments").doc(name);
+    // Add user to class from instructor side
+    assignmentRef
+      .set({
+        name: name,
+        description: description,
+        friendly: friendlyUnits,
+        enemy: enemyUnits,
+        friendlyAccuracy: friendlyAccuracy,
+        enemyAccuracy: enemyAccuracy,
+        time: timeRequirement,
+      })
+      .then(function () {
+        console.log("Document successfully written!");
+      })
+      .catch(function (error) {
+        console.error("Error writing document: ", error);
+      });
+
+    this.getAssignmentList();
   };
 
   render() {
@@ -55,10 +95,10 @@ class Assignments extends Component {
                 <th>Date Assigned</th>
                 <th>Date Due</th>
                 <th>Friendly Vehicles</th>
-                <th>Friendly Accuracy</th>
                 <th>Enemy Vehicles</th>
-                <th>Enemy Accuracy</th>
-                <th>Time Requirement</th>
+                <th>Friendly Accuracy (%)</th>
+                <th>Enemy Accuracy (%)</th>
+                <th>Time Requirement (s)</th>
               </tr>
             </thead>
             <tbody>
@@ -66,12 +106,20 @@ class Assignments extends Component {
                 ([assignmentName, details]) => (
                   <tr key={assignmentName}>
                     <td>{assignmentName}</td>
+                    <td>{details.description}</td>
                     <td>-</td>
                     <td>-</td>
-                    <td>-</td>
-                    <td>{details.friendly}</td>
+                    <td>
+                      {details.friendly.map((vehicle) => (
+                        <p key={vehicle}>{vehicle}</p>
+                      ))}
+                    </td>
+                    <td>
+                      {details.enemy.map((vehicle) => (
+                        <p key={vehicle}>{vehicle}</p>
+                      ))}
+                    </td>
                     <td>{details.friendlyAccuracy}</td>
-                    <td>{details.enemy}</td>
                     <td>{details.enemyAccuracy}</td>
                     <td>{details.time}</td>
                   </tr>
@@ -86,6 +134,8 @@ class Assignments extends Component {
             show={this.state.showAddAssignmentModal}
             onHide={this.toggleShowAddAssignmentModal}
             onCreateAssignment={this.createAssignment}
+            user={this.props.user}
+            selectedClass={this.props.selectedClass}
           ></AddAssignmentModal>
         </React.Fragment>
       );
