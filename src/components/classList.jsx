@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ClassRow from "./classRow";
 
+/** Component for list of all classes.  */
 class ClassList extends Component {
   render() {
     const { classes, onShowStudentTracker, onShowAssignments } = this.props;
@@ -8,7 +9,6 @@ class ClassList extends Component {
       <div>
         <br></br>
         <h2>CLASSES</h2>
-        {/* {console.log(Object.keys(classes))} */}
         {classes.map((classId) => (
           <ClassRow
             classId={classId}

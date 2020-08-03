@@ -8,11 +8,19 @@ import StudentTracker from "./components/studentTracker";
 import NavigationBar from "./components/NavigationBar";
 import Container from "react-bootstrap/Container";
 
+/** Instructor homepage. Contains a list of all classes along with a student and
+ * assignment tracker for each class.
+ */
 class InstructorHome extends Component {
   // Classes is a list of all classes
   // Changing it to just list of class names
   constructor(props) {
     super(props);
+    /** Classes: a list of all classes an instructor is in charge of.
+     * showStudentTracker: boolean for whether we should show the student tracker or not.
+     * showAssignments: boolean for whether we should show all assignments or not.
+     * activeClassId: String for which class is currently selected.
+     */
     this.state = {
       classes: [],
       showStudentTracker: false,
@@ -28,6 +36,7 @@ class InstructorHome extends Component {
     this.getClassList();
   }
 
+  /** Obtains the entire list of classes from Firestore that an instructor is in charge of.  */
   getClassList = () => {
     let db = firebase
       .firestore()
@@ -44,12 +53,18 @@ class InstructorHome extends Component {
     });
   };
 
+  /** When the student tracker button is clicked, shows the correct student tracker for
+   * the corresponding class.
+   */
   handleShowStudentTracker = (classId) => {
     this.setState({ showAssignments: false });
     this.setState({ showStudentTracker: !this.state.showStudentTracker });
     this.setState({ activeClassId: classId });
   };
 
+  /** When the assignments button is clicked, shows the correct assignment list for
+   * the corresponding class.
+   */
   handleShowAssignments = (classId) => {
     this.setState({ showStudentTracker: false });
     this.setState({ showAssignments: !this.state.showAssignments });

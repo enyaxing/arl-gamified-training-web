@@ -29,6 +29,7 @@ const AddAssignmentModal = ({ show, onHide, onCreateAssignment }) => {
   const [enemyAccuracy, setEnemyAccuracy] = useState(0);
   const [timeRequirement, setTimeRequirement] = useState(0);
 
+  /** Lines to import all of the images from public/CID Images */
   function importAll(r) {
     let images = {};
     r.keys().map((item, index) => {
@@ -87,6 +88,9 @@ const AddAssignmentModal = ({ show, onHide, onCreateAssignment }) => {
     }
   };
 
+  /** Corresponding helper function for part 2: friendly vehicle selection.
+   * Records the selected vehicle as a friendly vehicle and stores it.
+   */
   const handleSelectedFriendly = (event) => {
     const target = event.target;
     const checked = target.checked;
@@ -101,6 +105,9 @@ const AddAssignmentModal = ({ show, onHide, onCreateAssignment }) => {
     }
   };
 
+  /** Corresponding helper function for part 3: enemy vehicle selection. Records
+   * the selected vehicle in the enemy vehicle list.
+   */
   const handleSelectedEnemy = (event) => {
     const target = event.target;
     const checked = target.checked;
@@ -340,7 +347,9 @@ const EnemyVehicleSelector = ({
     </React.Fragment>
   );
 };
-
+/** Part 4: setting the requirements. Currently helping with friendly & enemy accuracy as well as
+ * setting a time rqeuiremnt.
+ */
 const RequirementsSelector = ({
   friendlyAccuracy,
   setFriendlyAccuracy,

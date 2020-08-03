@@ -4,9 +4,16 @@ import Table from "react-bootstrap/Table";
 import AddAssignmentModal from "./addAssignmentModal";
 import Button from "react-bootstrap/Button";
 
+/** Assignment list of all assignments an instructor has created. */
 class Assignments extends Component {
   constructor(props) {
     super(props);
+
+    /** assignments: a dictionary of assignment name to assignment details.
+     * showAddAssignmentModal: boolean for whether we should show the modal to create
+     * a new assignment.
+     */
+
     this.state = {
       assignments: {},
       showAddAssignmentModal: false,
@@ -16,6 +23,7 @@ class Assignments extends Component {
     this.getAssignmentList();
   }
 
+  /** Obtains all created assignments from Firebase. */
   getAssignmentList = () => {
     let db = firebase
       .firestore()
@@ -35,12 +43,16 @@ class Assignments extends Component {
     });
   };
 
+  /** Helper function to toggle the showAddAssignmentModal boolean. */
   toggleShowAddAssignmentModal = () => {
     this.setState({
       showAddAssignmentModal: !this.state.showAddAssignmentModal,
     });
   };
 
+  /** Takes in variables for assignment details. Creates a new assignment in
+   * Firebase, then refreshes the assignment list.
+   */
   createAssignment = (
     name,
     description,

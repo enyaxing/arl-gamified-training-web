@@ -4,7 +4,12 @@ import Button from "react-bootstrap/Button";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 
+/** Pop-up modal to add a student. Takes in a variable on whether it should be shown,
+ * onHide function to close the modal, and onAddStudent which is called when a new
+ * student is added.
+ */
 const AddStudentModal = ({ show, onHide, onAddStudent }) => {
+  /** Stores the student email.  */
   const [studentEmail, setStudentEmail] = useState("");
   return (
     <Modal
