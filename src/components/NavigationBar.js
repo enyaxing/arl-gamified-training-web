@@ -3,6 +3,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 
+/** Navigation bar for the instructor portal.  */
 const NavigationBar = ({ logout }) => {
   return (
     <Navbar bg="light">

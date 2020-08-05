@@ -6,6 +6,7 @@ import AddStudentModal from "../components/addStudentModal";
 import firebasePkg from "firebase/app";
 import MultipleStudentAddModal from "./multipleStudentAddModal";
 
+/** Shows the table of all students in a class.  */
 class StudentTracker extends Component {
   constructor(props) {
     super(props);
@@ -21,6 +22,7 @@ class StudentTracker extends Component {
     this.getAllStudents();
   }
 
+  /** Obtains all students in a class through firebase access. */
   getAllStudents = () => {
     let instructorRef = firebase
       .firestore()

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import firebase from "../config/Fire";
+/** Default login page. */
 class Login extends Component {
   constructor(props) {
     super(props);
