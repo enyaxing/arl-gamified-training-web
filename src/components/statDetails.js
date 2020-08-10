@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../App.css";
 
+/** How to render the list of stat details. */
 class StatDetails extends Component {
   constructor(props) {
     super(props);
@@ -12,7 +13,6 @@ class StatDetails extends Component {
   render() {
     var parsedInfo = []
     for (var key in this.props.info) {
-        // check if the property/key is defined in the object itself, not in parent
         if (this.props.type === "percent") {
             parsedInfo.push(<li key = {key}>{key + "   " + Math.round(this.props.info[key] * 1000) / 10 + "%"}</li>)
         } else if (this.props.type ==="second") {

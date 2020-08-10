@@ -3,6 +3,7 @@ import Options from "../components/option";
 import { create, all } from 'mathjs'
 import fire from "../config/Fire";
 
+/** Questionairre page on the Student portal. */
 class Question extends Component {
 
   constructor(props) {
@@ -40,12 +41,16 @@ class Question extends Component {
     this.math = create(all);
   }
 
+  /** Saves user focus in Firebase
+    Parameters:
+        userUID - uid of the user
+        focus - focus type to set */
   setFocus = (userUID, focus) => {
     let db = fire.firestore().collection("users").doc(userUID);
     db.set({focus: focus}, {merge: true});
   }
 
-  /** Calculates which regulatory focus type will be most beneficial to the user. Returns the type as either preventino, promotion, or neutral. */
+  /** Calculates which regulatory focus type will be most beneficial to the user. Returns the type as either prevention, promotion, or neutral. */
   analyzeScore = () => {
     var answered = true;
     for (var i = 0; i < this.state.values.length; i++) {
@@ -147,7 +152,7 @@ class Question extends Component {
       let temp4 = T * Math.sqrt(MSE * (1 + temp3.subset(math.index(0,0))));
       scores[1][0] = math.multiply(B, math.transpose(X1)).subset(math.index(0,0));
       scores[1][1] = scores[1][0] - temp4;
-      scores[1][2] = scores [1][0] + temp4;
+      scores[1][2] = scores[1][0] + temp4;
 
 //        control case 3
       let X2 = math.matrix([[1, pre, pro, 0, 0, 0, 0, 0, 0]])
@@ -155,12 +160,15 @@ class Question extends Component {
       let temp6 = T * Math.sqrt(MSE * (1 + temp5.subset(math.index(0,0))));
       scores[2][0] = math.multiply(B, math.transpose(X2)).subset(math.index(0,0));
       scores[2][1] = scores[2][0] - temp6;
-      scores[2][2] = scores [2][0] + temp6;
+      scores[2][2] = scores[2][0] + temp6;
 
       return scores
   }
 
-
+  /** Function called when radio button clicked.
+  Parameters:
+    event - event of clicking radio button
+    key - which radio button is clicked. */
   changeValue = (event, key) => {
       var temp = this.state.values
       temp[key] = event.target.value

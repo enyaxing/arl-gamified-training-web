@@ -22,7 +22,6 @@ class Session extends Component {
         db.get()
           .then(function(querySnapshot) {
                   querySnapshot.forEach(function(doc) {
-                      // doc.data() is never undefined for query doc snapshots
                       var newData = [{id : doc.id, date : doc.data().time, type : doc.data().type, points: doc.data().points}];
                       curr.setState({data : curr.state.data.concat(newData)});
                   });

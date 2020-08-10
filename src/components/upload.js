@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReactFileReader from "react-file-reader";
 
 // Pass in handleFiles as props
+/** Upload button that lets you upload a csv. */
 class Upload extends Component {
   constructor(props) {
     super(props);

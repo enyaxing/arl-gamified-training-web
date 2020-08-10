@@ -7,6 +7,7 @@ import StudentStats from "../components/studentStats";
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 
+/** Profile page on the student portal. */
 class Profile extends Component {
   constructor(props) {
     super(props);
@@ -21,10 +22,14 @@ class Profile extends Component {
     this.handleQuestionChange = this.handleQuestionChange.bind(this)
   }
 
+  /** Get student info when the component mounts. */
   componentDidMount() {
       this.getInfo(this.props.user.uid);
    }
 
+  /** Read student data from Firebase.
+  Parameters:
+    userUID - UID of student. */
   getInfo = (userUID) => {
       let db = fire.firestore().collection("users").doc(userUID);
       var curr = this;
@@ -33,7 +38,6 @@ class Profile extends Component {
           if (doc.exists) {
             curr.setState({ data : doc.data()});
           } else {
-            // doc.data() will be undefined in this case
             console.log("No such document!");
           }
         })
@@ -42,19 +46,25 @@ class Profile extends Component {
         });
     };
 
+  /** Function called when session is changed. */
    handleSessionChange = (event, id) => {
         console.log(id)
         this.setState({session : id})
    }
+
+   /** Function called when question is changed. */
    handleQuestionChange = (event, id) => {
        console.log(id)
        this.setState({question : id})
   }
+
+  /** Function called when location changed (ie sessions vs stats) */
   handleLocationChange = (event, id) => {
          console.log(id)
          this.setState({location : id})
     }
 
+  /** Tab selector for changing locations (ie sessions vs stats) */
   locationSelector = () => {
     if (this.state.location === "sessions") {
         return (<div>

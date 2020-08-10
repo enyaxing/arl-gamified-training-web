@@ -4,6 +4,7 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import "../App.css";
 
+/** Session summary page that displays all questions of the session. */
 class SessionSummary extends Component {
   constructor(props) {
     super(props);
@@ -12,19 +13,20 @@ class SessionSummary extends Component {
     };
   }
 
+  /** Retrieve questions from Firebase when component mounts.*/
   componentDidMount() {
     if (this.props.session != null) {
         this.getSummary(this.props.user.uid, this.props.session);
     }
   }
 
+  /** Retreive questions from Firebase. */
   getSummary = (userUID, session) => {
         let db = fire.firestore().collection("users").doc(userUID).collection("sessions").doc(session).collection("answers");
         var curr = this;
         db.get()
           .then(function(querySnapshot) {
                   querySnapshot.forEach(function(doc) {
-                      // doc.data() is never undefined for query doc snapshots
                       var newData = [{id : doc.id, expected: doc.data().expected, received: doc.data().received, image: doc.data().image}];
                       curr.setState({data : curr.state.data.concat(newData)});
                   });

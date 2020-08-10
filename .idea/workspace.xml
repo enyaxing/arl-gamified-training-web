@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="adec8273-dba1-4632-b394-33b70287a3bb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/addAssignmentModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/addAssignmentModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/option.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/option.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/session.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/session.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sessionSummary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sessionSummary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/statDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/studentStats.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/studentStats.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/upload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/studentPages/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/studentPages/profile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/studentPages/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/studentPages/question.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

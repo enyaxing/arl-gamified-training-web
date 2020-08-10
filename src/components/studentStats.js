@@ -4,6 +4,7 @@ import "../App.css";
 import StatDetails from "./statDetails";
 import tags from "../tags";
 
+/** Tab that dispalys detailed student stats. */
 class StudentStats extends Component {
   constructor(props) {
     super(props);
@@ -15,10 +16,14 @@ class StudentStats extends Component {
     };
   }
 
+  /** Get stats when component mounts. */
   componentDidMount() {
     this.getStats(this.props.user.uid)
   }
 
+  /** Get stats.
+  Parameters:
+    userUID - user UID. */
   getStats = (userUID) => {
         let db = fire.firestore().collection("users").doc(userUID).collection("sessions")
         var curr = this;
@@ -32,7 +37,6 @@ class StudentStats extends Component {
         db.get()
           .then(function(querySnapshot) {
                   querySnapshot.forEach(function(doc) {
-                      // doc.data() is never undefined for query doc snapshots
                       let ans = db.doc(doc.id).collection("answers")
                       ans.get()
                         .then(function(querySnapshot2) {

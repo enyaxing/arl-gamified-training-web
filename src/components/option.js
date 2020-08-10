@@ -4,6 +4,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 
+/** Creates 5 radio buttons with labels for the questionairre. */
 class Options extends Component {
   constructor(props) {
     super(props);
