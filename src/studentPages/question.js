@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Options from "../components/option";
 import { create, all } from 'mathjs'
-import fire from "../config/Fire";
+import fire from "../config/Firebase";
 
 /** Questionairre page on the Student portal. */
 class Question extends Component {

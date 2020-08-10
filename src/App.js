@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import fire from "./config/Fire";
+import fire from "./config/Firebase";
 import "bootstrap/dist/css/bootstrap.css";
 import Data from "./components/Data";
 import Homepage from "./Homepage";

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
-import firebase from "../config/Fire";
+import firebase from "../config/Firebase";
 let lineData;
 
 lineData = {

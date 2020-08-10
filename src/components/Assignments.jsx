@@ -1,5 +1,5 @@
 import React, { Component, useEffect } from "react";
-import firebase from "../config/Fire";
+import firebase from "../config/Firebase";
 import Table from "react-bootstrap/Table";
 import AddAssignmentModal from "./addAssignmentModal";
 import Button from "react-bootstrap/Button";

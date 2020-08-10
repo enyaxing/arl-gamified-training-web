@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import fire from "../config/Fire";
+import fire from "../config/Firebase";
 import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import "../App.css";

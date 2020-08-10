@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import firebase from "./config/Fire";
+import firebase from "./config/Firebase";
 
 import ClassList from "./components/classList";
 import Assignments from "./components/Assignments";

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import fire from "../config/Fire";
+import fire from "../config/Firebase";
 import "../App.css";
 
 class SummaryDetail extends Component {

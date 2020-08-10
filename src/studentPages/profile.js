@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import fire from "../config/Fire";
+import fire from "../config/Firebase";
 import Session from "../components/session";
 import SessionSummary from "../components/sessionSummary";
 import SummaryDetail from "../components/summaryDetail";

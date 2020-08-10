@@ -3,14 +3,20 @@
   <component name="ChangeListManager">
     <list default="true" id="adec8273-dba1-4632-b394-33b70287a3bb" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/option.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/option.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Assignments.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Assignments.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/session.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/session.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/sessionSummary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sessionSummary.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/statDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/statDetails.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/studentStats.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/studentStats.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/upload.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/upload.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/studentTracker.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/studentTracker.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/summaryDetail.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/summaryDetail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/instructorHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/instructorHome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/studentHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/studentHome.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/studentPages/profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/studentPages/profile.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/studentPages/question.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/studentPages/question.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/studentPages/training.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/studentPages/training.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import firebase from "./config/Fire";
+import firebase from "./config/Firebase";
 import NavBar from "./components/navbar";
 import Home from "./studentPages/home";
 import Question from "./studentPages/question";
@@ -32,7 +32,7 @@ class StudentHome extends Component {
         case 'question':
             return (<Question user = {this.props.user}/>);
         case 'training':
-            return (<Training />);
+            return (<Training user = {this.props.user}/>);
         case 'gonogo':
             return (<Gonogo />);
         case 'settings':

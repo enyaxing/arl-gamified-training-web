@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Table from "react-bootstrap/Table";
-import firebase from "../config/Fire";
+import firebase from "../config/Firebase";
 import Button from "react-bootstrap/Button";
 import AddStudentModal from "../components/addStudentModal";
 import firebasePkg from "firebase/app";
