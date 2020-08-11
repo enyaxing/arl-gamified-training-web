@@ -68,34 +68,6 @@ class App extends Component {
         </Router>
       </React.Fragment>
     );
-
-    // if (this.state.user) {
-    //   if (this.state.type === "student") {
-    //     return (
-    // <div className="App">
-    //   <StudentHome user={this.state.user} />
-    // </div>
-    //     );
-    //   } else {
-    //     return (
-    //       <div className="App">
-    //         <InstructorHome user={this.state.user} />
-    //         {/* <Data /> */}
-    //       </div>
-    //     );
-    //   }
-    // } else {
-    //   return (
-    //     <div className="App">
-    //       <div
-    //         class="d-flex align-items-center justify-content-center"
-    //         style={{ height: 300 }}
-    //       >
-    //         <Login />
-    //       </div>
-    //     </div>
-    //   );
-    // }
   }
 }
 

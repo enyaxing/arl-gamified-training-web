@@ -11,6 +11,8 @@ import Container from "react-bootstrap/Container";
 /** Instructor homepage. Contains a list of all classes along with a student and
  * assignment tracker for each class.
  */
+
+let animObj = null;
 class InstructorHome extends Component {
   // Classes is a list of all classes
   // Changing it to just list of class names
@@ -80,6 +82,12 @@ class InstructorHome extends Component {
             <h1>Instructor Portal</h1>
             <p>{this.props.user.email}</p>
           </div>
+          <div
+            style={{ width: 400, margin: "0 auto" }}
+            ref={(ref) => (this.animBox = ref)}
+          ></div>
+          <button onClick={this.handleStop}>Stop</button>
+          <button onClick={this.handlePlay}>Play</button>
 
           {this.state.classes ? (
             <ClassList
