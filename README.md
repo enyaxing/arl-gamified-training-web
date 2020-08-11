@@ -1,4 +1,17 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# ARL Gamified Training Web
+
+## Table of Contents
+
+1. [Overview](#overview)
+2. [Available Scripts](#Available-Scripts)
+3. [General files](#general-files)
+4. [Instructor Portal](#instructor-portal)
+5. [Student Portal](#student-portal)
+6. [Data Visualization](#data-visualization)
+
+## Overview
+
+This project was created as the web counterpart to the mobile version of ARL Gamified Training. It consists of an instructor portal, student portal, and data visualization portion.
 
 ## Available Scripts
 
@@ -11,11 +24,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
@@ -37,32 +45,94 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## General Files
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### `App.js`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Main page of the app. Contains the Homepage component and has a method to obtain student type from Firebase.
 
-### Code Splitting
+### `Homepage.jsx`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Full path: `/src/Homepage.jsx`  
+Based on the current user type, this component displays the Instructor Home if instructor, Student Home if student, and Login page is none.
 
-### Analyzing the Bundle Size
+---
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Components
 
-### Making a Progressive Web App
+#### `Login.jsx`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Full path: `/src/components/Login.jsx`  
+This is the default landing page if no user is currently signed in. Here, the user can log in and the log in function goes through Firebase to authenticate the user and bring them to the correct portal.
 
-### Advanced Configuration
+#### `NavigationBar.js`
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+Navigation bar on the instructor side with sign out and path to data visualization page.
 
-### Deployment
+## Instructor Portal
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+### `instructorHome.js`
 
-### `npm run build` fails to minify
+Portal that shows when an instructor logs in. There is a top navigation bar that has a tab ("Data") to enter the data visualization page along with a sign out button. On the home page, the instructor sees all of their classes in a table with options to view the student and assignment tracker for each individual class.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+---
+
+### Instructor Portal Components
+
+All under `/src/components`
+
+#### `studentTracker.jsx`
+
+#### `classList.jsx`
+
+#### `classRow.jsx`
+
+#### `addStudentModal.jsx`
+
+#### `Assignments.jsx`
+
+#### `addAssignmentModal.jsx`
+
+#### `upload.js`
+
+#### `multipleStudentAddModal.jsx`
+
+## Student Portal
+
+### `studentHome.js`
+
+### `about.js`
+
+### `gonogo.js`
+
+### `home.js`
+
+### `profile.js`
+
+### `question.js`
+
+### `settings.js`
+
+### `training.js`
+
+---
+
+### Student Portal Components
+
+All under `/src/components`
+
+#### `navbar.js`
+
+#### `option.js`
+
+#### `session.js`
+
+#### `sessionSummary.js`
+
+#### `statDetails.js`
+
+#### `studentStats.js`
+
+#### `summaryDetail.js`
+
+## Data Visualization
