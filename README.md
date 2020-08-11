@@ -170,3 +170,7 @@ Tab that displays all student statistics under the student profile.
 Shows summary details for each session summary.
 
 ## Data Visualization
+
+#### `Data.js`
+
+Displays data visualization depicting performance trends.
