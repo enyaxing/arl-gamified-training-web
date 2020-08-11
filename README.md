@@ -35,16 +35,6 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
 ## General Files
 
 ### `App.js`
@@ -53,7 +43,6 @@ Main page of the app. Contains the Homepage component and has a method to obtain
 
 ### `Homepage.jsx`
 
-Full path: `/src/Homepage.jsx`  
 Based on the current user type, this component displays the Instructor Home if instructor, Student Home if student, and Login page is none.
 
 ---
@@ -62,7 +51,6 @@ Based on the current user type, this component displays the Instructor Home if i
 
 #### `Login.jsx`
 
-Full path: `/src/components/Login.jsx`  
 This is the default landing page if no user is currently signed in. Here, the user can log in and the log in function goes through Firebase to authenticate the user and bring them to the correct portal.
 
 #### `NavigationBar.js`
@@ -83,37 +71,69 @@ All under `/src/components`
 
 #### `studentTracker.jsx`
 
+Displays all students in a certain class, along with their performance statistics. Includes option to remove a student or add a student.
+
 #### `classList.jsx`
+
+List of all classes maanged shown on the main instructor home.
 
 #### `classRow.jsx`
 
+One row in the class list.
+
 #### `addStudentModal.jsx`
+
+Modal that appears when an instructor chooses to add a student.
+
+#### `multipleStudentAddModal.jsx`
+
+Modal that appears when an instructor chooses to add multiple students at once through a csv file. In the home directory of this app, there is a testing.csv file to experiment with.
 
 #### `Assignments.jsx`
 
+Table showing all assignments created, with description, selected friendly vehicles, selected enemy vehicles, along with time and accuracy requirements.
+
 #### `addAssignmentModal.jsx`
+
+Modal that appears when an instructor wants to create a new assignment. This modal is four parts (divided into subsections) to account for the assignment creation process.
 
 #### `upload.js`
 
-#### `multipleStudentAddModal.jsx`
+Assists with csv file uploads.
 
 ## Student Portal
 
 ### `studentHome.js`
 
+Main landing page for students upon login. Shows student email and navigation bar.
+
 ### `about.js`
+
+About page for students.
 
 ### `gonogo.js`
 
+Launches go/no-go for students.
+
+### `training.js`
+
+Launches two-choice training for students.
+
 ### `home.js`
+
+Student home page.
 
 ### `profile.js`
 
+Shows student information, performance statistics, past sessions, statistics, and achievements.
+
 ### `question.js`
+
+Provides the questionairre for students to take and determine their preferred feedback type.
 
 ### `settings.js`
 
-### `training.js`
+Student app setting page.
 
 ---
 
@@ -123,16 +143,30 @@ All under `/src/components`
 
 #### `navbar.js`
 
+Navigation bar on student side.
+
 #### `option.js`
+
+5 radio button options for the questionairre.
 
 #### `session.js`
 
+Obtains past sessions and details and displays. Used in the student profile page.
+
 #### `sessionSummary.js`
+
+Session summary page that displays all questions of the session. Shows whether a certain vehicle was identified correctly or incorrectly.
 
 #### `statDetails.js`
 
+Renders the list of statistic details in student profile.
+
 #### `studentStats.js`
 
+Tab that displays all student statistics under the student profile.
+
 #### `summaryDetail.js`
+
+Shows summary details for each session summary.
 
 ## Data Visualization
