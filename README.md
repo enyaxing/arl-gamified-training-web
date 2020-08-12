@@ -105,35 +105,35 @@ Assists with csv file uploads.
 
 ### `studentHome.js`
 
-Main landing page for students upon login. Shows student email and navigation bar.
+Main landing page for students upon login. Shows student name, email, navigation bar, and sign out button.
 
 ### `about.js`
 
-About page for students.
+About page for students.  This is rendered when the about tab is clicked.
 
 ### `gonogo.js`
 
-Launches go/no-go for students.
+Launches go/no-go for students.  This is rendered when the go/no-go tab is clicked.
 
 ### `training.js`
 
-Launches two-choice training for students.
+Launches two-choice training for students.  This is rendered when the training tab is clicked.
 
 ### `home.js`
 
-Student home page.
+Student home page.  This is part of the main landing page for students upon logging in.  Is also rendered when home tab is clicked.
 
 ### `profile.js`
 
-Shows student information, performance statistics, past sessions, statistics, and achievements.
+Shows student information, performance statistics, past sessions, statistics, and achievements.  This is rendered when profile tab is clicked.
 
 ### `question.js`
 
-Provides the questionairre for students to take and determine their preferred feedback type.
+Provides the questionairre for students to take and determine their preferred feedback type.  This is rendered when the questionnairre tab is clicked.
 
 ### `settings.js`
 
-Student app setting page.
+Student app setting page.  Allows the user to select the friendly and enemy vehciles for their next training practice session.  This is rendered when the settings tab is clicked.
 
 ---
 
@@ -143,15 +143,15 @@ All under `/src/components`
 
 #### `navbar.js`
 
-Navigation bar on student side.
+Navigation bar on student side.  Includes the options, home, about, training, gonogo, profile, questionairre, and settings.
 
 #### `option.js`
 
-5 radio button options for the questionairre.
+Creates the 5 radio button options for the questionairre.  Also includes labels for the first, third, and fifth radio buttons.
 
 #### `session.js`
 
-Obtains past sessions and details and displays. Used in the student profile page.
+Obtains past sessions and details and displays. Used in the student profile page.  Individual sessions may be clicked to view more in depth summaries.
 
 #### `sessionSummary.js`
 
@@ -159,15 +159,15 @@ Session summary page that displays all questions of the session. Shows whether a
 
 #### `statDetails.js`
 
-Renders the list of statistic details in student profile.
+Renders the list of statistic details in student profile.  This includes vehicle accuracy, vehicle average response time, tag accuracy, and tag average response time.
 
 #### `studentStats.js`
 
-Tab that displays all student statistics under the student profile.
+Calculates all the statistic details that is rendered by `statDetails.js`.
 
 #### `summaryDetail.js`
 
-Shows summary details for each session summary.
+Shows summary details for each session summary.  This includes vehilce image, vehicle name, expected response, and received response.
 
 ## Data Visualization
 
